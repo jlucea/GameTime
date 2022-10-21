@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F234700290196E700A765BE /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2346FF290196E700A765BE /* PickerView.swift */; };
+		6F234702290197EF00A765BE /* PickerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234701290197EF00A765BE /* PickerView2.swift */; };
+		6F23470429019A1200A765BE /* NewTimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23470329019A1200A765BE /* NewTimerScreen.swift */; };
 		6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */; };
-		6FA853CD28FB1A78005E4EC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CC28FB1A78005E4EC1 /* ContentView.swift */; };
+		6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CC28FB1A78005E4EC1 /* MainView.swift */; };
 		6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */; };
 		6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */; };
+		6FA853D928FB1F03005E4EC1 /* TimerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853D828FB1F03005E4EC1 /* TimerCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F2346FF290196E700A765BE /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		6F234701290197EF00A765BE /* PickerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView2.swift; sourceTree = "<group>"; };
+		6F23470329019A1200A765BE /* NewTimerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerScreen.swift; sourceTree = "<group>"; };
 		6FA853C728FB1A78005E4EC1 /* GameTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeApp.swift; sourceTree = "<group>"; };
-		6FA853CC28FB1A78005E4EC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6FA853CC28FB1A78005E4EC1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6FA853D828FB1F03005E4EC1 /* TimerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F23470529028FCA00A765BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6FA853CC28FB1A78005E4EC1 /* MainView.swift */,
+				6FA853D828FB1F03005E4EC1 /* TimerCard.swift */,
+				6F234701290197EF00A765BE /* PickerView2.swift */,
+				6F2346FF290196E700A765BE /* PickerView.swift */,
+				6F23470329019A1200A765BE /* NewTimerScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6FA853BE28FB1A78005E4EC1 = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +71,8 @@
 		6FA853C928FB1A78005E4EC1 /* GameTime */ = {
 			isa = PBXGroup;
 			children = (
+				6F23470529028FCA00A765BE /* View */,
 				6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */,
-				6FA853CC28FB1A78005E4EC1 /* ContentView.swift */,
 				6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */,
 				6FA853D028FB1A7A005E4EC1 /* Preview Content */,
 			);
@@ -137,7 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FA853CD28FB1A78005E4EC1 /* ContentView.swift in Sources */,
+				6F23470429019A1200A765BE /* NewTimerScreen.swift in Sources */,
+				6F234702290197EF00A765BE /* PickerView2.swift in Sources */,
+				6F234700290196E700A765BE /* PickerView.swift in Sources */,
+				6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */,
+				6FA853D928FB1F03005E4EC1 /* TimerCard.swift in Sources */,
 				6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
