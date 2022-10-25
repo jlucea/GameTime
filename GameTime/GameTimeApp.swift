@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct GameTimeApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            
+            GameTimeView()
         }
     }
 }
