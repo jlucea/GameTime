@@ -16,41 +16,53 @@ struct NewTimerScreen: View {
     
     @Binding var isPresented : Bool
     
+    let frameWidth : CGFloat = 350
+    let frameHeight : CGFloat = 400
+    
     private let button_size = CGFloat(66)
     
     var body: some View {
-        
-        VStack {
-            
-            TextField("Player name", text: $playerName)
-                .autocorrectionDisabled()
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 300, alignment: .center)
-            
-            // TODO: Add color picker
-            
-            TimeDurationPicker(duration: $timeInterval)
-                .padding()
-            
-            Button {
-                print("Add new timer button pressed")
-                print("New player name: \(playerName)")
-                print("Time interval: \(timeInterval)")
-
-                let newTimer = PlayerClock(name: playerName, color: .cyan, maxTime: Int(timeInterval))
-                timerController.addTimer(timer: newTimer)
+        NavigationView {
+            VStack {
                 
-                // Dismiss view
-                isPresented = false
+                TextField("Player name", text: $playerName)
+                    .autocorrectionDisabled()
+                    .textFieldStyle(.roundedBorder)
+                    .padding([.leading, .trailing])
+                    .frame(width: 330, alignment: .center)
                 
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .frame(width: button_size, height: button_size)
-                    .tint(.green)
+                TimeDurationPicker(duration: $timeInterval)
+                
+                // TODO: Add color picker
             }
             
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Add Player").font(.headline)
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Save", action: {
+                        saveAndClose()
+                    })
+                }
+            }
         }
+        .frame(idealWidth: frameWidth, maxWidth: frameWidth, idealHeight: frameHeight, maxHeight: frameHeight)
+        // .border(.green, width: 2)
+        .navigationViewStyle(.stack)
+    }
+    
+    func saveAndClose() {
+        
+        // print("New Player - save button pressed")
+        // print("New player name: \(playerName)")
+        // print("Time interval: \(timeInterval)")
+        let newTimer = PlayerClock(name: playerName, color: .cyan, maxTime: Int(timeInterval))
+        timerController.addTimer(timer: newTimer)
+        
+        // Dismiss view
+        isPresented = false
     }
     
 }

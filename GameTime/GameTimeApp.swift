@@ -12,8 +12,8 @@ struct GameTimeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
             GameTimeView()
+                .preferredColorScheme(.dark)
         }
     }
 }

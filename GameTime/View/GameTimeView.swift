@@ -22,7 +22,7 @@ struct GameTimeView: View {
     private let subtitleText = "Setup a timer to begin"
     
     var body: some View {
-
+        
         ZStack {
             // When runninng under iOS16, could use NavigationStack instead of NavigationView
             NavigationView {
@@ -41,7 +41,7 @@ struct GameTimeView: View {
                         
                     } else {
                         // Display active timer and controls
-                        TimerControlView(timer: timerManager.activeTimer) 
+                        TimerControlView(timer: timerManager.activeTimer)
                     }
                     
                     // Horizontal scroll bar at the bottom of the screen
@@ -49,8 +49,10 @@ struct GameTimeView: View {
                         HStack {
                             ForEach(timerManager.timers, id: \.id) { timer in
                                 TimerCard(timer: timer)
+                                    .padding(.trailing, 8)
                             }
                         }
+                        .padding(.leading)
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
@@ -62,6 +64,10 @@ struct GameTimeView: View {
                         }, label: {
                             Image(systemName: "person.crop.circle.badge.plus")
                         })
+                        .padding(.bottom, 6)
+                        .popover(isPresented: $showAddNewTimerScreen, content: {
+                            NewTimerScreen(isPresented: $showAddNewTimerScreen)
+                        } )
                     }
                     ToolbarItem(placement: .principal) {
                         Text(toolbarTitle).font(.headline)
@@ -78,12 +84,15 @@ struct GameTimeView: View {
             .environmentObject(timerManager)
             
             // New timer screen view, presented as a sheet
-            .sheet(isPresented: $showAddNewTimerScreen) {
-                NewTimerScreen(isPresented: $showAddNewTimerScreen)
-            }
-            .environmentObject(timerManager)
-        }
-    }
+//            .sheet(isPresented: $showAddNewTimerScreen) {
+//                NewTimerScreen(isPresented: $showAddNewTimerScreen)
+//                    .background(Color.black)
+//            }
+//            .environmentObject(timerManager)
+            
+        } // ZStack closure
+        
+    } // End of view's body
     
 }
 
@@ -91,15 +100,19 @@ struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
         
-        let timer1 = PlayerClock(name: "Jaime", color: .brown, maxTime: 1044)
-        let timer2 = PlayerClock(name: "Mª Antonia", color: .yellow, maxTime: 375)
-        let timer3 = PlayerClock(name: "Fco. Javier", color: .blue, maxTime: 2171)
-        let timer4 = PlayerClock(name: "Didi", color: .green, maxTime: 829)
+        let timer1 = PlayerClock(name: "Jaime", color: .brown, maxTime: 3044)
+        let timer2 = PlayerClock(name: "Mª Antonia", color: .yellow, maxTime: 6375)
+        let timer3 = PlayerClock(name: "Fco. Javier", color: .blue, maxTime: 7971)
+        let timer4 = PlayerClock(name: "Didi", color: .green, maxTime: 3829)
         
         let array : [PlayerClock] = [timer1, timer2, timer3, timer4]
         
         let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
                         
         return GameTimeView(timerManager: envObject)
+            .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
+            .previewInterfaceOrientation(.landscapeLeft)
+            .preferredColorScheme(.dark)
+            .previewDisplayName("GameTime - Main View (Session Ongoing)")
     }
 }

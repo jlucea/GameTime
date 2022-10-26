@@ -25,7 +25,6 @@ struct TimerControlView: View {
     var body: some View {
         
         VStack {
-            
             Spacer()
             Text(timer.name)
                 .font(.system(size: 32))
@@ -70,12 +69,9 @@ struct TimerControlView: View {
                         .tint(.blue)
                 })
             }
-            .padding()
-            
             Spacer()
         }
     }
-    
 }
 
 struct TimerControlView_Previews: PreviewProvider {

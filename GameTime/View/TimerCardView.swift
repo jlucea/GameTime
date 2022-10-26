@@ -11,21 +11,28 @@ struct TimerCard: View {
     
     @ObservedObject var timer : PlayerClock
     
+    let cardWidth : CGFloat = 210
+    let cardHeight : CGFloat = 210
+    
     var body: some View {
-        
+
         VStack {
             // Player name
             Text(timer.name)
-                .padding()
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
             
             // Time remaining
             Text(timer.getTimeString())
                 .font(.title2)
+                .foregroundColor(.white)
                 .padding()
         }
-        .frame(width: 210, height: 210, alignment: .center)
-        .border(.gray)
-        // .cornerRadius(20)
+        .frame(width: cardWidth, height: cardHeight, alignment: .center)
+        .background(
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("GTDarkGrayColor"))
+        )
     }
 }
 
