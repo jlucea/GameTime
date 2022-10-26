@@ -33,7 +33,7 @@ struct TimerControlView: View {
             
             Text(timer.getTimeString())
                 .font(.custom("Corsiva Hebrew", size: 58, relativeTo: .title))
-                .padding(.bottom, 80)
+                .padding(.bottom, 50)
             
             // Display timer controls
             HStack {
@@ -45,7 +45,7 @@ struct TimerControlView: View {
                         timer.pause()
                     }
                 }, label: {
-                    Image(systemName: "playpause.circle.fill")
+                    Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: button_size, height: button_size)
                         .tint(.green)

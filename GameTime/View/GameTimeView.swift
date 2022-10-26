@@ -24,9 +24,8 @@ struct GameTimeView: View {
     var body: some View {
 
         ZStack {
-            // Using NavigationStack instead of NavigationView
-            // This will require minimum target iOS16
-            NavigationStack {
+            // When runninng under iOS16, could use NavigationStack instead of NavigationView
+            NavigationView {
                 VStack {
                     if (timerManager.isEmpty()) {
                         // Show message, inviting the user to setup a timer
@@ -75,8 +74,8 @@ struct GameTimeView: View {
                     }
                 }
             }
+            .navigationViewStyle(.stack)
             .environmentObject(timerManager)
-            // .navigationViewStyle(.stack)
             
             // New timer screen view, presented as a sheet
             .sheet(isPresented: $showAddNewTimerScreen) {

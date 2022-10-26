@@ -14,15 +14,16 @@ struct TimerCard: View {
     var body: some View {
         
         VStack {
-                        
+            // Player name
             Text(timer.name)
                 .padding()
             
+            // Time remaining
             Text(timer.getTimeString())
-                .font(.title)
+                .font(.title2)
                 .padding()
         }
-        .frame(width: 240, height: 280, alignment: .center)
+        .frame(width: 210, height: 210, alignment: .center)
         .border(.gray)
         // .cornerRadius(20)
     }
@@ -32,11 +33,10 @@ struct TimerCard: View {
 struct TimerCard_Previews: PreviewProvider {
     
     static var previews: some View {
-        let previewClock : PlayerClock = PlayerClock(name: "Player", color: .orange, maxTime: 155)
+        let previewClock : PlayerClock = PlayerClock(name: "Player #3", color: .orange, maxTime: 6155)
         TimerCard(timer: previewClock)
             .previewDevice(.none)
             .previewLayout(.sizeThatFits)
-            .padding()
-            .previewDisplayName("Timer card preview")
+            .previewDisplayName("Timer card")
     }
 }
