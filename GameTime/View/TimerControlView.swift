@@ -12,8 +12,7 @@ struct TimerControlView: View {
     @EnvironmentObject var controller : StateController
     
     //
-    // TimerControlView could perfectly call the controller in order to get the active timer
-    //  and display its data. Instead, it uses an observed property timer.
+    // This View could perfectly get the active timer from controller. Instead, it uses an observed property timer.
     //
     // This observed property would be needed even if the values displayed
     //  on the view elements were taken from the controller (controller.activeTimer.name)!
@@ -44,10 +43,17 @@ struct TimerControlView: View {
                         timer.pause()
                     }
                 }, label: {
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: button_size, height: button_size)
-                        .tint(.green)
+                    if (timer.isPaused) {
+                        Image(systemName: "play.circle.fill")
+                            .resizable()
+                            .frame(width: button_size, height: button_size)
+                            .tint(.green)
+                    } else {
+                        Image(systemName: "pause.circle.fill")
+                            .resizable()
+                            .frame(width: button_size, height: button_size)
+                            .tint(.blue)
+                    }
                 })
                 .padding(.trailing, 50)
 
@@ -59,14 +65,15 @@ struct TimerControlView: View {
                     // We call objectWillChange.sedn() here for the view to be ready to update itself
                     //  when we activate the next timer in the controller.
                     //
-                    controller.objectWillChange.send()
-                    controller.next()
-
+                    if (controller.timers.count > 1) {
+                        controller.objectWillChange.send()
+                        controller.next()
+                    }
                 }, label: {
                     Image(systemName: "arrow.right.circle.fill")
                         .resizable()
                         .frame(width: button_size, height: button_size)
-                        .tint(.blue)
+                        .tint(.yellow)
                 })
             }
             Spacer()
@@ -79,6 +86,9 @@ struct TimerControlView_Previews: PreviewProvider {
     static var previews: some View {
         TimerControlView(timer: PlayerClock(name: "Fco. Javier", color: .blue, maxTime: 2199))
             .previewLayout(.sizeThatFits)
+            .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
+            .previewInterfaceOrientation(.landscapeLeft)
+            .preferredColorScheme(.dark)
     }
 
 }

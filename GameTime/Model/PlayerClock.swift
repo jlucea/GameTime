@@ -16,8 +16,8 @@ class PlayerClock : ObservableObject {
     
     var timer : Timer?
     let maxTimeSeconds : Int
-    var isPaused : Bool
     
+    @Published var isPaused : Bool
     @Published var remainingSeconds : Int
     
     var listener : ClockListener?
