@@ -11,7 +11,7 @@ struct NewTimerScreen: View {
     
     @EnvironmentObject var timerController : StateController
     
-    @State private var timeInterval = TimeInterval(60 * 30)
+    @State private var timeInterval = TimeInterval(60 * 30)     // Initial value
     @State private var playerName : String = ""
     
     @Binding var isPresented : Bool
@@ -32,6 +32,9 @@ struct NewTimerScreen: View {
                     .frame(width: 330, alignment: .center)
                 
                 TimeDurationPicker(duration: $timeInterval)
+                    .onSubmit {
+                        print("Time duration picker - submit")
+                    }
                 
                 // TODO: Add color picker
             }
@@ -44,6 +47,11 @@ struct NewTimerScreen: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save", action: {
                         saveAndClose()
+                    })
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", action: {
+                        isPresented.toggle()
                     })
                 }
             }
