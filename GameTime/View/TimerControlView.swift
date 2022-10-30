@@ -27,6 +27,7 @@ struct TimerControlView: View {
             Spacer()
             Text(timer.name)
                 .font(.system(size: 32))
+                .foregroundColor(timer.color)
                 .padding()
             
             Text(timer.getTimeString())

@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 class PlayerClock : ObservableObject {
     
     let id = UUID()
     let name : String
-    let color : UIColor
+    let color : Color
     
     var timer : Timer?
     let maxTimeSeconds : Int
@@ -22,7 +22,7 @@ class PlayerClock : ObservableObject {
     
     var listener : ClockListener?
     
-    init(name: String, color: UIColor, maxTime: Int){
+    init(name: String, color: Color, maxTime: Int){
         self.name = name
         self.color = color
         self.maxTimeSeconds = maxTime

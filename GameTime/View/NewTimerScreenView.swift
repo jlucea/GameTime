@@ -22,6 +22,7 @@ struct NewTimerScreen: View {
 
     @State var selections: [Int] = [0, 30]
     
+    @State var selectedColor : Color = Color.green
     @Binding var isPresented : Bool
     
     let frameWidth : CGFloat = 350
@@ -32,17 +33,19 @@ struct NewTimerScreen: View {
     var body: some View {
         NavigationView {
             VStack {
-                
-                TextField("Player name", text: $playerName)
-                    .autocorrectionDisabled()
-                    .textFieldStyle(.roundedBorder)
-                    .padding([.leading, .trailing])
-                    .frame(width: 330, alignment: .center)
-                
+                HStack {
+                    TextField("Player name", text: $playerName)
+                        .autocorrectionDisabled()
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 250, alignment: .center)
+                        .padding(.leading)
+                    
+                    ColorPicker("", selection: $selectedColor)
+                        .padding(.trailing)
+                }
+                .padding([.leading, .trailing])
+
                 PickerView(data: self.data, selections: self.$selections)
-                // TimeDurationPicker(duration: $timeInterval)
-                
-                // TODO: Add color picker
             }
             
             .navigationBarTitleDisplayMode(.inline)
@@ -79,7 +82,7 @@ struct NewTimerScreen: View {
         print("Seconds selected: \(totalSecondsSelected)")
         
         // Instantiate and add new timer
-        let newTimer = PlayerClock(name: playerName, color: .cyan, maxTime: totalSecondsSelected)
+        let newTimer = PlayerClock(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
         timerController.addTimer(timer: newTimer)
         
         // Dismiss view
