@@ -29,10 +29,15 @@ struct TimerCard: View {
                 .padding()
         }
         .frame(width: cardWidth, height: cardHeight, alignment: .center)
-        .background(
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color("GTDarkGrayColor"))
-        )
+        .background {
+            if (timer.isPaused) {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color("GTDarkGrayColor"))
+            } else {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.gray)
+            }
+        }
     }
 }
 
@@ -43,6 +48,7 @@ struct TimerCard_Previews: PreviewProvider {
         let previewClock : PlayerClock = PlayerClock(name: "Player #3", color: .orange, maxTime: 6155)
         TimerCard(timer: previewClock)
             .previewDevice(.none)
+            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Timer card")
     }

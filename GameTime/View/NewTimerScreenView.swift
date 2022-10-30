@@ -11,8 +11,16 @@ struct NewTimerScreen: View {
     
     @EnvironmentObject var timerController : StateController
     
-    @State private var timeInterval = TimeInterval(60 * 30)     // Initial value
     @State private var playerName : String = ""
+    
+    // Since there is no TimeIntervalPicker as of SwiftUI
+    // we're using a customizable PickerView
+    private let data: [[String]] = [
+        Array(0...10).map { "\($0) h" },
+        Array(0...59).map { "\($0) min" }
+    ]
+
+    @State var selections: [Int] = [0, 30]
     
     @Binding var isPresented : Bool
     
@@ -31,10 +39,8 @@ struct NewTimerScreen: View {
                     .padding([.leading, .trailing])
                     .frame(width: 330, alignment: .center)
                 
-                TimeDurationPicker(duration: $timeInterval)
-                    .onSubmit {
-                        print("Time duration picker - submit")
-                    }
+                PickerView(data: self.data, selections: self.$selections)
+                // TimeDurationPicker(duration: $timeInterval)
                 
                 // TODO: Add color picker
             }
@@ -63,10 +69,17 @@ struct NewTimerScreen: View {
     
     func saveAndClose() {
         
-        // print("New Player - save button pressed")
-        // print("New player name: \(playerName)")
-        // print("Time interval: \(timeInterval)")
-        let newTimer = PlayerClock(name: playerName, color: .cyan, maxTime: Int(timeInterval))
+        print("New timer - save button pressed")
+        print("New timer name: \(playerName)")
+        
+        let totalSecondsSelected = 60 * 60 * selections[0] + 60 * selections[1]
+
+        print("Selections: \(self.selections[0]) \(self.selections[1])")
+        print("Selected data: \(self.data[0][self.selections[0]]) \(self.data[1][self.selections[1]])")
+        print("Seconds selected: \(totalSecondsSelected)")
+        
+        // Instantiate and add new timer
+        let newTimer = PlayerClock(name: playerName, color: .cyan, maxTime: totalSecondsSelected)
         timerController.addTimer(timer: newTimer)
         
         // Dismiss view
