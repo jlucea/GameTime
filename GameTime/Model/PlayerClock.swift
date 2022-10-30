@@ -66,8 +66,8 @@ class PlayerClock : ObservableObject {
     //
     // Returns 0 to 1, where 1 is 100% completion (0 secs left)
     //
-    func getProgress() -> Float {
-        return 1-Float(remainingSeconds)/Float(maxTimeSeconds)
+    func getProgress() -> Double {
+        return 1-Double(remainingSeconds)/Double(maxTimeSeconds)
     }
     
     //

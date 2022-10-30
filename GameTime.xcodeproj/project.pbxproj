@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0F9066290E929D000E7E22 /* CircularProgressView.swift */; };
 		6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234701290197EF00A765BE /* TimeDurationPickerView.swift */; };
 		6F23470429019A1200A765BE /* NewTimerScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23470329019A1200A765BE /* NewTimerScreenView.swift */; };
 		6F23470B290290E400A765BE /* OldMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234707290290E400A765BE /* OldMainViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F0F9066290E929D000E7E22 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		6F234701290197EF00A765BE /* TimeDurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDurationPickerView.swift; sourceTree = "<group>"; };
 		6F23470329019A1200A765BE /* NewTimerScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerScreenView.swift; sourceTree = "<group>"; };
 		6F234707290290E400A765BE /* OldMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldMainViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		6F370DFE290BEBF900A407C0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6F0F9066290E929D000E7E22 /* CircularProgressView.swift */,
 				6F370DFF290BEC1400A407C0 /* PickerView.swift */,
 				6F370E01290BEC7800A407C0 /* TimePickerView.swift */,
 				6F234701290197EF00A765BE /* TimeDurationPickerView.swift */,
@@ -226,6 +229,7 @@
 				6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */,
 				6F23470D290290E400A765BE /* OldSetupViewController.swift in Sources */,
 				6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */,
+				6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */,
 				6F234712290290F700A765BE /* ClockListener.swift in Sources */,
 				6F234713290290F700A765BE /* PlayerClock.swift in Sources */,
 				6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */,

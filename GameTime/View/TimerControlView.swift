@@ -23,66 +23,75 @@ struct TimerControlView: View {
     
     var body: some View {
         
-        VStack {
-            Spacer()
-            Text(timer.name)
-                .font(.system(size: 32))
-                .foregroundColor(timer.color)
-                .padding()
+        ZStack {
             
-            Text(timer.getTimeString())
-                .font(.custom("Corsiva Hebrew", size: 58, relativeTo: .title))
-                .padding(.bottom, 50)
+            CircularProgressView(color: timer.color
+                                 , progress: timer.getProgress())
+            .frame(width: 400, height: 400)
             
-            // Display timer controls
-            HStack {
-                Button (action: {
-                    // start/pause active timer
-                    if (timer.isPaused) {
-                        print("PLAY timer \(timer.name): \(timer.remainingSeconds) seconds left")
-                        timer.start()
-                    } else {
-                        print("PAUSE timer \(timer.name): \(timer.remainingSeconds) seconds left")
-                        timer.pause()
-                    }
-                }, label: {
-                    if (timer.isPaused) {
-                        Image(systemName: "play.circle.fill")
+            // Vertical stack containing player name, active timer and timer controls
+            VStack {
+                Spacer()
+                Text(timer.name)
+                    .font(.system(size: 32))
+                    .foregroundColor(timer.color)
+                    .padding()
+                
+                Text(timer.getTimeString())
+                    .font(.custom("Corsiva Hebrew", size: 58, relativeTo: .title))
+                    .padding(.bottom, 50)
+                
+                // Display timer controls
+                HStack {
+                    Button (action: {
+                        // start/pause active timer
+                        if (timer.isPaused) {
+                            print("PLAY timer \(timer.name): \(timer.remainingSeconds) seconds left")
+                            timer.start()
+                        } else {
+                            print("PAUSE timer \(timer.name): \(timer.remainingSeconds) seconds left")
+                            timer.pause()
+                        }
+                    }, label: {
+                        if (timer.isPaused) {
+                            Image(systemName: "play.circle")
+                                .resizable()
+                                .frame(width: button_size, height: button_size)
+                                .tint(.white)
+                        } else {
+                            Image(systemName: "pause.circle")
+                                .resizable()
+                                .frame(width: button_size, height: button_size)
+                                .tint(.white)
+                        }
+                    })
+                    .padding(.trailing, 50)
+                    
+                    Button (action: {
+                        //
+                        // "All observable objects automatically get access to an objectWillChange property,
+                        //  which has a send() method we can all whenever we want observing views to refresh."
+                        //
+                        // We call objectWillChange.sedn() here for the view to be ready to update itself
+                        //  when we activate the next timer in the controller.
+                        //
+                        if (controller.timers.count > 1) {
+                            controller.objectWillChange.send()
+                            controller.next()
+                        }
+                    }, label: {
+                        Image(systemName: "arrow.right.circle")
                             .resizable()
                             .frame(width: button_size, height: button_size)
-                            .tint(.green)
-                    } else {
-                        Image(systemName: "pause.circle.fill")
-                            .resizable()
-                            .frame(width: button_size, height: button_size)
-                            .tint(.blue)
-                    }
-                })
-                .padding(.trailing, 50)
-
-                Button (action: {
-                    //
-                    // "All observable objects automatically get access to an objectWillChange property,
-                    //  which has a send() method we can all whenever we want observing views to refresh."
-                    //
-                    // We call objectWillChange.sedn() here for the view to be ready to update itself
-                    //  when we activate the next timer in the controller.
-                    //
-                    if (controller.timers.count > 1) {
-                        controller.objectWillChange.send()
-                        controller.next()
-                    }
-                }, label: {
-                    Image(systemName: "arrow.right.circle.fill")
-                        .resizable()
-                        .frame(width: button_size, height: button_size)
-                        .tint(.yellow)
-                })
-            }
-            Spacer()
-        }
-    }
-}
+                            .tint(.white)
+                    })
+                }
+                Spacer()
+            } // VStack
+        
+        } // ZStack
+    } // View
+} // Struct
 
 struct TimerControlView_Previews: PreviewProvider {
 
