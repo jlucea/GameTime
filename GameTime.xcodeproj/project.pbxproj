@@ -20,7 +20,7 @@
 		6F370E00290BEC1400A407C0 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370DFF290BEC1400A407C0 /* PickerView.swift */; };
 		6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370E01290BEC7800A407C0 /* TimePickerView.swift */; };
 		6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */; };
-		6FA853CD28FB1A78005E4EC1 /* GameTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CC28FB1A78005E4EC1 /* GameTimeView.swift */; };
+		6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CC28FB1A78005E4EC1 /* MainView.swift */; };
 		6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */; };
 		6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */; };
 		6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */; };
@@ -42,7 +42,7 @@
 		6F370E01290BEC7800A407C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		6FA853C728FB1A78005E4EC1 /* GameTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeApp.swift; sourceTree = "<group>"; };
-		6FA853CC28FB1A78005E4EC1 /* GameTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeView.swift; sourceTree = "<group>"; };
+		6FA853CC28FB1A78005E4EC1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				6F370DFE290BEBF900A407C0 /* Components */,
-				6FA853CC28FB1A78005E4EC1 /* GameTimeView.swift */,
+				6FA853CC28FB1A78005E4EC1 /* MainView.swift */,
 				6FF1B0EA2906CA21001B9E38 /* TimerControlView.swift */,
 				6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */,
 				6F23470329019A1200A765BE /* NewTimerScreenView.swift */,
@@ -225,7 +225,7 @@
 				6FF1B0EB2906CA21001B9E38 /* TimerControlView.swift in Sources */,
 				6F2347162902934C00A765BE /* StateController.swift in Sources */,
 				6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */,
-				6FA853CD28FB1A78005E4EC1 /* GameTimeView.swift in Sources */,
+				6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */,
 				6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */,
 				6F23470D290290E400A765BE /* OldSetupViewController.swift in Sources */,
 				6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */,

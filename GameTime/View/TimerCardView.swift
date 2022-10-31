@@ -9,6 +9,10 @@ import SwiftUI
 
 struct TimerCard: View {
     
+    @Environment(\.editMode) private var editMode
+    
+    @EnvironmentObject var controller : StateController
+    
     @ObservedObject var timer : PlayerClock
     
     let cardWidth : CGFloat = 210
@@ -29,6 +33,21 @@ struct TimerCard: View {
                 .padding()
         }
         .frame(width: cardWidth, height: cardHeight, alignment: .center)
+        .overlay{
+            // The delete button will only be displayed when in edit mode
+            if editMode?.wrappedValue.isEditing == true {
+                Button(action: {
+                    controller.deleteTimer(timer: timer)
+                }) {
+                    Image(systemName: "minus.circle.fill")
+                        .resizable()
+                        .foregroundStyle(.white, .black, .red)
+                        .frame(width: 25, height: 25)
+                        .padding([.top, .leading])
+                }
+                .frame(width: cardWidth, height: cardHeight, alignment: .topLeading)
+            }
+        }
         .background {
             if (timer.isPaused) {
                 RoundedRectangle(cornerRadius: 25)

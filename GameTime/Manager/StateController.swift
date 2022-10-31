@@ -10,8 +10,8 @@ import Foundation
 final class StateController : ObservableObject {
     
     @Published var timers : [PlayerClock]
-        
-    var activeTimerIndex : Int
+    
+    private var activeTimerIndex : Int
     
     var activeTimer : PlayerClock {
         return timers[activeTimerIndex]
@@ -60,6 +60,28 @@ final class StateController : ObservableObject {
             activeTimer.resume()
         }
         print("new activeTimerIndex = \(activeTimerIndex)")
+    }
+    
+    func deleteTimer(timer: PlayerClock) {
+        
+        let wasRunning = !timer.isPaused
+        if wasRunning {
+            timer.pause()
+        }
+        // If the timer being deleted is the active timer,
+        //  activeTimerIndex must be uptated
+        if (timer.id == activeTimer.id) {
+            activeTimerIndex = 0
+        }
+        // Remove timer from array
+        timers = timers.filter() { $0 !== timer }
+        
+        // If the timer was running
+        if !timers.isEmpty && wasRunning {
+            activeTimer.resume()
+        }
+        
+        // Note that timer remains paused and out of the timers array, but still instantated
     }
     
 }
