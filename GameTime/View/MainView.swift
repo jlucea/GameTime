@@ -40,7 +40,7 @@ struct MainView: View {
                     
                 } else {
                     // Display active timer and controls
-                    TimerControlView(timer: controller.activeTimer)
+                    ActiveTimerView(timer: controller.activeTimer)
                 }
                 
                 // Horizontal scroll bar at the bottom of the screen
@@ -95,11 +95,11 @@ struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
         
-        let timer1 = PlayerClock(name: "Jaime", color: .brown, maxTime: 3044)
-        let timer2 = PlayerClock(name: "Mª Antonia", color: .yellow, maxTime: 6375)
-        let timer3 = PlayerClock(name: "Fco. Javier", color: .blue, maxTime: 7971)
-        let timer4 = PlayerClock(name: "Didi", color: .green, maxTime: 3829)
-        let array : [PlayerClock] = [timer1, timer2, timer3, timer4]
+        let timer1 = PlayerTimer(name: "Jaime", color: .brown, maxTime: 3044)
+        let timer2 = PlayerTimer(name: "Mª Antonia", color: .yellow, maxTime: 6375)
+        let timer3 = PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 7971)
+        let timer4 = PlayerTimer(name: "Didi", color: .green, maxTime: 3829)
+        let array : [PlayerTimer] = [timer1, timer2, timer3, timer4]
         
         let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
                         

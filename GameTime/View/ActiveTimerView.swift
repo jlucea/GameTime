@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimerControlView: View {
+struct ActiveTimerView: View {
     
     @EnvironmentObject var controller : StateController
     
@@ -17,7 +17,7 @@ struct TimerControlView: View {
     // This observed property would be needed even if the values displayed
     //  on the view elements were taken from the controller (controller.activeTimer.name)!
     //
-    @ObservedObject var timer : PlayerClock
+    @ObservedObject var timer : PlayerTimer
     
     private let button_size = CGFloat(66)
     
@@ -96,7 +96,7 @@ struct TimerControlView: View {
 struct TimerControlView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TimerControlView(timer: PlayerClock(name: "Fco. Javier", color: .blue, maxTime: 2199))
+        ActiveTimerView(timer: PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 2199))
             .previewLayout(.sizeThatFits)
             .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
             .previewInterfaceOrientation(.landscapeLeft)

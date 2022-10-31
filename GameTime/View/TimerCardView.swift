@@ -13,7 +13,7 @@ struct TimerCard: View {
     
     @EnvironmentObject var controller : StateController
     
-    @ObservedObject var timer : PlayerClock
+    @ObservedObject var timer : PlayerTimer
     
     let cardWidth : CGFloat = 210
     let cardHeight : CGFloat = 210
@@ -64,7 +64,7 @@ struct TimerCard: View {
 struct TimerCard_Previews: PreviewProvider {
     
     static var previews: some View {
-        let previewClock : PlayerClock = PlayerClock(name: "Player #3", color: .orange, maxTime: 6155)
+        let previewClock : PlayerTimer = PlayerTimer(name: "Player #3", color: .orange, maxTime: 6155)
         TimerCard(timer: previewClock)
             .previewDevice(.none)
             .preferredColorScheme(.dark)

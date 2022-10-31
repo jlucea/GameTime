@@ -9,11 +9,11 @@ import Foundation
 
 final class StateController : ObservableObject {
     
-    @Published var timers : [PlayerClock]
+    @Published var timers : [PlayerTimer]
     
     private var activeTimerIndex : Int
     
-    var activeTimer : PlayerClock {
+    var activeTimer : PlayerTimer {
         return timers[activeTimerIndex]
     }
     
@@ -22,22 +22,22 @@ final class StateController : ObservableObject {
         activeTimerIndex = 0
     }
     
-    init(timers: [PlayerClock], activeTimerIndex: Int) {
+    init(timers: [PlayerTimer], activeTimerIndex: Int) {
         self.timers = timers
         self.activeTimerIndex = activeTimerIndex
     }
     
     func addTimer(playerName: String, seconds: Int) {
         
-        let newTimer = PlayerClock(name: playerName, color: .green, maxTime: seconds)
+        let newTimer = PlayerTimer(name: playerName, color: .green, maxTime: seconds)
         timers.append(newTimer)
     }
     
-    func addTimer(timer: PlayerClock) {
+    func addTimer(timer: PlayerTimer) {
         timers.append(timer)
     }
     
-    func getActiveTimer() -> PlayerClock? {
+    func getActiveTimer() -> PlayerTimer? {
         return timers[activeTimerIndex]
     }
     
@@ -62,7 +62,7 @@ final class StateController : ObservableObject {
         print("new activeTimerIndex = \(activeTimerIndex)")
     }
     
-    func deleteTimer(timer: PlayerClock) {
+    func deleteTimer(timer: PlayerTimer) {
         
         let wasRunning = !timer.isPaused
         if wasRunning {

@@ -9,6 +9,6 @@ import Foundation
 
 protocol ClockListener {
     
-    func onClockTick(clock : PlayerClock)
+    func onClockTick(clock : PlayerTimer)
     
 }

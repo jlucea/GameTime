@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class PlayerClock : ObservableObject {
+class PlayerTimer : ObservableObject {
     
     let id = UUID()
     let name : String
