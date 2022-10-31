@@ -26,7 +26,7 @@ struct ActiveTimerView: View {
         ZStack {
             
             CircularProgressView(color: timer.color
-                                 , progress: timer.getProgress())
+                                 , progress: timer.getProgress(), lineWidth: 20)
             .frame(width: 400, height: 400)
             
             // Vertical stack containing player name, active timer and timer controls

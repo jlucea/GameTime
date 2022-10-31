@@ -11,8 +11,7 @@ struct CircularProgressView: View {
     
     let color : Color
     var progress: Double
-    
-    private let lineWidth : CGFloat = 20
+    let lineWidth : CGFloat
     
     var body: some View {
         ZStack {
@@ -39,6 +38,6 @@ struct CircularProgressView: View {
 
 struct CircularProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CircularProgressView(color: Color.green, progress: 0.7)
+        CircularProgressView(color: Color.green, progress: 0.7, lineWidth: 18)
     }
 }
