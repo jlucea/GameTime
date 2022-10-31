@@ -19,16 +19,13 @@ class PlayerTimer : ObservableObject {
     
     @Published var isPaused : Bool
     @Published var remainingSeconds : Int
-    
-    var listener : ClockListener?
-    
+        
     init(name: String, color: Color, maxTime: Int){
         self.name = name
         self.color = color
         self.maxTimeSeconds = maxTime
         self.isPaused = true
         self.remainingSeconds = maxTimeSeconds
-        // self.listener = listener
     }
     
     func start(){
@@ -57,7 +54,6 @@ class PlayerTimer : ObservableObject {
         if self.remainingSeconds > 0 {
             self.remainingSeconds -= 1
             print(name + ": tic (" + String(remainingSeconds) + ")")
-            listener?.onClockTick(clock: self)
         }else{
             self.timer?.invalidate()
         }
@@ -80,10 +76,6 @@ class PlayerTimer : ObservableObject {
         let seconds = Int(time) % 60
         
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-    }
-    
-    func setListener(_ listener: ClockListener){
-        self.listener = listener
     }
     
 }
