@@ -47,7 +47,7 @@ struct TimerCard: View {
                     .fill(Color("GTDarkGrayColor"))
             } else {
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(Color.gray)
+                    .fill(Color("GTLightGrayColor"))
             }
         }
         .overlay(alignment: .topLeading) {
