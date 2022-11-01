@@ -15,14 +15,18 @@ struct NewTimerScreen: View {
     
     // Since there is no TimeIntervalPicker as of SwiftUI
     // we're using a customizable PickerView
-    private let data: [[String]] = [
+    private let timePickerValues: [[String]] = [
         Array(0...10).map { "\($0) h" },
         Array(0...59).map { "\($0) min" }
     ]
 
-    @State var selections: [Int] = [0, 30]
-    
+    // Values that are selected in the time picker
+    @State var selectedTimePickerValues: [Int] = [0, 30]
+        
+    // TODO: Make initial color value random or based on the number of existing timers?
     @State var selectedColor : Color = Color.green
+    
+    // Used to show/hide the screen
     @Binding var isPresented : Bool
     
     let frameWidth : CGFloat = 350
@@ -33,20 +37,50 @@ struct NewTimerScreen: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    TextField("Player name", text: $playerName)
-                        .autocorrectionDisabled()
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 250, alignment: .center)
-                        .padding(.leading)
+                // Time picker
+                PickerView(data: self.timePickerValues, selections: self.$selectedTimePickerValues)
+                    .frame(width: frameWidth, height: 160)
+                    .padding(.top)
+                
+                Form {
+                    NavigationLink  {
+                        
+                        //TODO: focus this text field immediately upon showing the view and open keyboard so the user doesn't have to tap to start writing
+                        TextField("Player Name", text: $playerName)
+                            .autocorrectionDisabled()
+                            .textFieldStyle(.plain)
+                            .padding()
+                                                        
+                    } label: {
+                        HStack {
+                            Text("Name").frame(maxWidth:.infinity, alignment: .leading)
+                            Text($playerName.wrappedValue)
+                                .lineLimit(1)
+                                .foregroundColor(Color(UIColor.lightGray))
+                                .frame(maxWidth: 260, alignment: .trailing)
+                        }
+                    }
                     
-                    ColorPicker("", selection: $selectedColor, supportsOpacity: false)
-                        .padding(.trailing)
+                    // Using the system's ColorPicker (without opacity controls)
+                    ColorPicker("Color", selection: $selectedColor, supportsOpacity: false)
                 }
-                .padding([.leading, .trailing])
-
-                PickerView(data: self.data, selections: self.$selections)
             }
+            
+//            VStack {
+//                HStack {
+//                    TextField("Player name", text: $playerName)
+//                        .autocorrectionDisabled()
+//                        .textFieldStyle(.roundedBorder)
+//                        .frame(width: 250, alignment: .center)
+//                        .padding(.leading)
+//
+//                    ColorPicker("", selection: $selectedColor, supportsOpacity: false)
+//                        .padding(.trailing)
+//                }
+//                .padding([.leading, .trailing])
+//
+//                PickerView(data: self.data, selections: self.$selections)
+//            }
             
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -66,7 +100,6 @@ struct NewTimerScreen: View {
             }
         }
         .frame(idealWidth: frameWidth, maxWidth: frameWidth, idealHeight: frameHeight, maxHeight: frameHeight)
-        // .border(.green, width: 2)
         .navigationViewStyle(.stack)
     }
     
@@ -75,11 +108,11 @@ struct NewTimerScreen: View {
         print("New timer - save button pressed")
         print("New timer name: \(playerName)")
         
-        let totalSecondsSelected = 60 * 60 * selections[0] + 60 * selections[1]
+        let totalSecondsSelected = 60 * 60 * selectedTimePickerValues[0] + 60 * selectedTimePickerValues[1]
 
-        print("Selections: \(self.selections[0]) \(self.selections[1])")
-        print("Selected data: \(self.data[0][self.selections[0]]) \(self.data[1][self.selections[1]])")
-        print("Seconds selected: \(totalSecondsSelected)")
+//        print("Selections: \(self.selections[0]) \(self.selections[1])")
+//        print("Selected data: \(self.timePickerValues[0][self.selections[0]]) \(self.timePickerValues[1][self.selections[1]])")
+//        print("Seconds selected: \(totalSecondsSelected)")
         
         // Instantiate and add new timer
         let newTimer = PlayerTimer(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
