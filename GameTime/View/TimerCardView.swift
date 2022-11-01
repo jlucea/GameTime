@@ -15,15 +15,17 @@ struct TimerCard: View {
     
     @ObservedObject var timer : PlayerTimer
     
-    let cardWidth : CGFloat = 210
-    let cardHeight : CGFloat = 210
+    private let cardWidth : CGFloat = 200
+    private let cardHeight : CGFloat = 200
+    private let circleFrameWidth : CGFloat = 160
+    private let circleFrameHeight : CGFloat = 160
     
     var body: some View {
 
         ZStack{
             CircularProgressView(color: timer.color
                                  , progress: timer.getProgress(), lineWidth: 6)
-            .frame(width: 170, height: 170)
+            .frame(width: circleFrameWidth, height: circleFrameHeight)
             
             VStack {
                 // Player name

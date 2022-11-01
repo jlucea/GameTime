@@ -16,7 +16,7 @@ struct MainView: View {
     @ObservedObject var controller = StateController()
     
     @State private var showAddNewTimerScreen : Bool = false
-    
+        
     private let toolbarTitle = "GameTime"
     private let titleText = "Welcome to GameTime"
     private let subtitleText = "Setup a timer to begin"
@@ -71,7 +71,7 @@ struct MainView: View {
                     Text(toolbarTitle).font(.headline)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    // This activates editMode
+                    // Pressing this button will activate editMode
                     EditButton()
                 }
             }
