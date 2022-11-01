@@ -40,7 +40,7 @@ struct NewTimerScreen: View {
                         .frame(width: 250, alignment: .center)
                         .padding(.leading)
                     
-                    ColorPicker("", selection: $selectedColor)
+                    ColorPicker("", selection: $selectedColor, supportsOpacity: false)
                         .padding(.trailing)
                 }
                 .padding([.leading, .trailing])
