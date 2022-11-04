@@ -94,7 +94,7 @@ struct MainView: View {
                 // print("GameTime - Active")
                 
                 if (controller.isEmpty() == false) {
-                    if (controller.activeTimer.isPaused == false) {
+                    if (controller.activeTimer.isPaused == false && controller.activeTimer.remainingSeconds > 0) {
                         print("GameTime becoming active while timer is running")
                         print("Recovering background time")
                         if let backgroundDate : Date = UserDefaults.standard.object(forKey: "backgroundTime") as? Date {
@@ -104,8 +104,13 @@ struct MainView: View {
                             formatter.allowedUnits = [.second]
                             print("App was in the background for \(formatter.string(from: secondsInBackground)!) seconds")
                             
-                            // Subtract from active timer the time passed since the app entered background
-                            controller.activeTimer.remainingSeconds -= Int(secondsInBackground)
+                            if (Int(secondsInBackground) >= controller.activeTimer.remainingSeconds) {
+                                controller.activeTimer.remainingSeconds = 0
+                                controller.activeTimer.pause()
+                            } else {
+                                // Subtract from active timer the time passed since the app entered background
+                                controller.activeTimer.remainingSeconds -= Int(secondsInBackground)
+                            }
                         }
                     }
                 }
