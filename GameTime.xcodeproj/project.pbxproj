@@ -338,6 +338,7 @@
 				DEVELOPMENT_TEAM = 548ZQR4ZZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GameTime;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -370,6 +371,7 @@
 				DEVELOPMENT_TEAM = 548ZQR4ZZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GameTime;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
