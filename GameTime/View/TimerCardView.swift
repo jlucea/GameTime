@@ -54,7 +54,7 @@ struct TimerCard: View {
             if editMode?.wrappedValue.isEditing == true {
                 // The delete button will only be displayed when in edit mode
                 Button(action: {
-                    controller.deleteTimer(timer: timer)
+                    controller.delete(timer: timer)
                 }) {
                     Image(systemName: "minus.circle.fill")
                         .resizable()
@@ -64,6 +64,15 @@ struct TimerCard: View {
                 }
                 .frame(width: cardWidth, height: cardHeight, alignment: .topLeading)
             }
+        }
+        .onTapGesture {
+            print("Timer \(timer.name) tapped")
+            if (controller.isActive(timer: timer) == false) {
+                controller.makeActive(timer: timer)
+            }
+//            if (timer.isPaused && timer.remainingSeconds > 0) {
+//                timer.resume()
+//            }
         }
         
     } // Body

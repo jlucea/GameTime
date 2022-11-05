@@ -28,7 +28,7 @@ struct MainView: View {
         // When runninng under iOS16, could use NavigationStack instead of NavigationView
         NavigationView {
             VStack {
-                if (controller.isEmpty()) {
+                if (controller.timers.isEmpty) {
                     // Show message, inviting the user to setup a timer
                     Spacer()
                     Image(systemName: "clock")
@@ -42,7 +42,7 @@ struct MainView: View {
                     
                 } else {
                     // Display active timer and controls
-                    ActiveTimerView(timer: controller.activeTimer)
+                    ActiveTimerView(timer: controller.activeTimer!)
                 }
                 
                 // Horizontal scroll bar at the bottom of the screen
@@ -93,23 +93,25 @@ struct MainView: View {
             if newPhase == .active {
                 // print("GameTime - Active")
                 
-                if (controller.isEmpty() == false) {
-                    if (controller.activeTimer.isPaused == false && controller.activeTimer.remainingSeconds > 0) {
-                        print("GameTime becoming active while timer is running")
-                        print("Recovering background time")
-                        if let backgroundDate : Date = UserDefaults.standard.object(forKey: "backgroundTime") as? Date {
-                            
-                            let secondsInBackground : TimeInterval = Date.now.timeIntervalSince(backgroundDate)
-                            let formatter = DateComponentsFormatter()
-                            formatter.allowedUnits = [.second]
-                            print("App was in the background for \(formatter.string(from: secondsInBackground)!) seconds")
-                            
-                            if (Int(secondsInBackground) >= controller.activeTimer.remainingSeconds) {
-                                controller.activeTimer.remainingSeconds = 0
-                                controller.activeTimer.pause()
-                            } else {
-                                // Subtract from active timer the time passed since the app entered background
-                                controller.activeTimer.remainingSeconds -= Int(secondsInBackground)
+                if (controller.timers.isEmpty == false) {
+                    if let activeTimer = controller.activeTimer {
+                        if (activeTimer.isPaused == false && activeTimer.remainingSeconds > 0) {
+                            print("GameTime becoming active while timer is running")
+                            print("Recovering background time")
+                            if let backgroundDate : Date = UserDefaults.standard.object(forKey: "backgroundTime") as? Date {
+                                
+                                let secondsInBackground : TimeInterval = Date.now.timeIntervalSince(backgroundDate)
+                                let formatter = DateComponentsFormatter()
+                                formatter.allowedUnits = [.second]
+                                print("App was in the background for \(formatter.string(from: secondsInBackground)!) seconds")
+                                
+                                if (Int(secondsInBackground) >= activeTimer.remainingSeconds) {
+                                    activeTimer.remainingSeconds = 0
+                                    activeTimer.pause()
+                                } else {
+                                    // Subtract from active timer the time passed since the app entered background
+                                    activeTimer.remainingSeconds -= Int(secondsInBackground)
+                                }
                             }
                         }
                     }
@@ -121,12 +123,14 @@ struct MainView: View {
                 // print("GameTime - Inactive")
             } else if newPhase == .background {
                 // print("GameTime - Background")
-                if (controller.activeTimer.isPaused == false) {
-                    print("GameTime entering background mode while timer is running")
-                    print("Storing time")
-                    print("\(Date.now.description)")
-                    // Store the Date when the app went into background
-                    UserDefaults.standard.set(Date.now, forKey: "backgroundTime")
+                if let activeTimer = controller.activeTimer {
+                    if (activeTimer.isPaused == false) {
+                        print("GameTime entering background mode while timer is running")
+                        print("Storing time")
+                        print("\(Date.now.description)")
+                        // Store the Date when the app went into background
+                        UserDefaults.standard.set(Date.now, forKey: "backgroundTime")
+                    }
                 }
             }
         }
