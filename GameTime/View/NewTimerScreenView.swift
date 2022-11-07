@@ -32,8 +32,8 @@ struct NewTimerScreen: View {
     let frameWidth : CGFloat = 350
     let frameHeight : CGFloat = 400
     
-    private let button_size = CGFloat(66)
-    
+    @FocusState private var textFieldFocus: Bool
+
     var body: some View {
         NavigationView {
             VStack {
@@ -52,6 +52,12 @@ struct NewTimerScreen: View {
                                 .padding()
                                 .background(Color(UIColor.systemGray5))
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .focused($textFieldFocus)
+                                .onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                        self.textFieldFocus = true
+                                    }
+                                }
                         }
                         .padding(.horizontal)
                         .navigationTitle("Name")
