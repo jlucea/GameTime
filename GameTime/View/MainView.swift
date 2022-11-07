@@ -66,7 +66,7 @@ struct MainView: View {
                     })
                     .padding(.bottom, 6)
                     .popover(isPresented: $showAddNewTimerScreen, content: {
-                        NewTimerScreen()
+                        NewTimerView()
                     } )
                 }
                 ToolbarItem(placement: .principal) {

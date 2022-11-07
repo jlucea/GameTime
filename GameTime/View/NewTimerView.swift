@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewTimerScreen: View {
+struct NewTimerView: View {
     
     @EnvironmentObject var timerController : StateController
     
@@ -45,7 +45,7 @@ struct NewTimerScreen: View {
                 Form {
                     NavigationLink  {
                         
-                        TimerNameInputView(playerName: $playerName)
+                        TimerNameInputView(text: $playerName)
                         
                     } label: {
                         // Display the name of the timer in the form's navigation link
@@ -105,49 +105,12 @@ struct NewTimerScreen: View {
 }
 
 
-/*
- * This is a view containing only a TextField
- */
-struct TimerNameInputView : View {
-
-    @Binding var playerName : String
-    @FocusState private var textFieldFocus: Bool
-
-    // Used to dismiss the view
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-
-        VStack {
-            TextField("", text: $playerName)
-                .autocorrectionDisabled()
-                .submitLabel(.done)
-                .onSubmit {
-                    dismiss()
-                }
-                .padding()
-                .background(Color(UIColor.systemGray5))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .focused($textFieldFocus)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        self.textFieldFocus = true
-                    }
-                }
-        }
-        .padding(.horizontal)
-        .navigationTitle("Name")
-    }
-
-}
-
-
 struct NewTimerScreen_Previews: PreviewProvider {
     
     struct PreviewContainer : View {
                 
         var body: some View {
-            NewTimerScreen()
+            NewTimerView()
         }
     }
     
