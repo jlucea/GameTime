@@ -11,7 +11,7 @@ struct NewTimerScreen: View {
     
     @EnvironmentObject var timerController : StateController
     
-    @State private var playerName : String = ""
+    @State private var playerName : String = "Player"
     
     // Since there is no TimeIntervalPicker as of SwiftUI
     // we're using a customizable PickerView
@@ -46,11 +46,16 @@ struct NewTimerScreen: View {
                     NavigationLink  {
                         
                         //TODO: focus this text field immediately upon showing the view and open keyboard so the user doesn't have to tap to start writing
-                        TextField("Player Name", text: $playerName)
-                            .autocorrectionDisabled()
-                            .textFieldStyle(.plain)
-                            .padding()
-                                                        
+                        VStack {
+                            TextField("", text: $playerName)
+                                .autocorrectionDisabled()
+                                .padding()
+                                .background(Color(UIColor.systemGray5))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+                        .padding(.horizontal)
+                        .navigationTitle("Name")
+                
                     } label: {
                         HStack {
                             Text("Name").frame(maxWidth:.infinity, alignment: .leading)
