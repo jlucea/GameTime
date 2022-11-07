@@ -29,6 +29,7 @@ struct MainView: View {
         NavigationView {
             VStack {
                 if (controller.timers.isEmpty) {
+                    // Empty (no timers) view:
                     // Show message, inviting the user to setup a timer
                     Spacer()
                     Image(systemName: "clock")
@@ -53,11 +54,10 @@ struct MainView: View {
                                 .padding(.trailing, 8)
                         }
                     }
-                }.padding(.leading)
+                }
+                .padding(.leading)
             }
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // TODO: encapsulate this code defining the toolbar content
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         showAddNewTimerScreen.toggle()
@@ -66,7 +66,7 @@ struct MainView: View {
                     })
                     .padding(.bottom, 6)
                     .popover(isPresented: $showAddNewTimerScreen, content: {
-                        NewTimerScreen(isPresented: $showAddNewTimerScreen)
+                        NewTimerScreen()
                     } )
                 }
                 ToolbarItem(placement: .principal) {
@@ -77,6 +77,7 @@ struct MainView: View {
                     EditButton()
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)
         .environmentObject(controller)

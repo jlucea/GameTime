@@ -26,14 +26,14 @@ struct NewTimerScreen: View {
     // TODO: Make initial color value random or based on the number of existing timers?
     @State var selectedColor : Color = Color.green
     
-    // Used to show/hide the screen
-    @Binding var isPresented : Bool
-    
     let frameWidth : CGFloat = 350
     let frameHeight : CGFloat = 400
     
     @FocusState private var textFieldFocus: Bool
 
+    // Used to dismiss the view
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -45,24 +45,10 @@ struct NewTimerScreen: View {
                 Form {
                     NavigationLink  {
                         
-                        //TODO: focus this text field immediately upon showing the view and open keyboard so the user doesn't have to tap to start writing
-                        VStack {
-                            TextField("", text: $playerName)
-                                .autocorrectionDisabled()
-                                .padding()
-                                .background(Color(UIColor.systemGray5))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .focused($textFieldFocus)
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                        self.textFieldFocus = true
-                                    }
-                                }
-                        }
-                        .padding(.horizontal)
-                        .navigationTitle("Name")
-                
+                        TimerNameInputView(playerName: $playerName)
+                        
                     } label: {
+                        // Display the name of the timer in the form's navigation link
                         HStack {
                             Text("Name").frame(maxWidth:.infinity, alignment: .leading)
                             Text($playerName.wrappedValue)
@@ -72,27 +58,10 @@ struct NewTimerScreen: View {
                         }
                     }
                     
-                    // Using the system's ColorPicker (without opacity controls)
+                    // Using the system's ColorPicker without opacity controls
                     ColorPicker("Color", selection: $selectedColor, supportsOpacity: false)
                 }
             }
-            
-//            VStack {
-//                HStack {
-//                    TextField("Player name", text: $playerName)
-//                        .autocorrectionDisabled()
-//                        .textFieldStyle(.roundedBorder)
-//                        .frame(width: 250, alignment: .center)
-//                        .padding(.leading)
-//
-//                    ColorPicker("", selection: $selectedColor, supportsOpacity: false)
-//                        .padding(.trailing)
-//                }
-//                .padding([.leading, .trailing])
-//
-//                PickerView(data: self.data, selections: self.$selections)
-//            }
-            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -105,7 +74,7 @@ struct NewTimerScreen: View {
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: {
-                        isPresented.toggle()
+                        dismiss()
                     })
                 }
             }
@@ -130,19 +99,55 @@ struct NewTimerScreen: View {
         timerController.addTimer(timer: newTimer)
         
         // Dismiss view
-        isPresented = false
+        dismiss()
     }
     
 }
 
+
+/*
+ * This is a view containing only a TextField
+ */
+struct TimerNameInputView : View {
+
+    @Binding var playerName : String
+    @FocusState private var textFieldFocus: Bool
+
+    // Used to dismiss the view
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+
+        VStack {
+            TextField("", text: $playerName)
+                .autocorrectionDisabled()
+                .submitLabel(.done)
+                .onSubmit {
+                    dismiss()
+                }
+                .padding()
+                .background(Color(UIColor.systemGray5))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .focused($textFieldFocus)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        self.textFieldFocus = true
+                    }
+                }
+        }
+        .padding(.horizontal)
+        .navigationTitle("Name")
+    }
+
+}
+
+
 struct NewTimerScreen_Previews: PreviewProvider {
     
     struct PreviewContainer : View {
-        
-        @State private var doDisplay : Bool = true
-        
+                
         var body: some View {
-            NewTimerScreen(isPresented: $doDisplay)
+            NewTimerScreen()
         }
     }
     
