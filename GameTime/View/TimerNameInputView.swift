@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /*
  * This is a view containing only a TextField
@@ -13,15 +14,18 @@ import SwiftUI
 struct TimerNameInputView : View {
 
     @Binding var text : String
+
+    let maxLength = 25
     
     @FocusState private var textFieldFocus: Bool
-
+    
     // Used to dismiss the view
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
 
         VStack {
+            
             TextField("", text: $text)
                 .autocorrectionDisabled()
                 .submitLabel(.done)
@@ -33,15 +37,24 @@ struct TimerNameInputView : View {
                         self.textFieldFocus = true
                     }
                 }
+                .onReceive(Just(text)) { _ in limitText(maxLength)}
                 .onSubmit {
                     dismiss()
                 }
                 .modifier(TextFieldClearButton(text: $text))
                 .background(Color(UIColor.systemGray5))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                
         }
         .padding(.horizontal)
         .navigationTitle("Name")
+    }
+    
+    // Function to keep text length in limits
+    func limitText(_ charlimit: Int) {
+        if text.count > charlimit {
+            text = String(text.prefix(charlimit))
+        }
     }
     
     /*
