@@ -29,8 +29,6 @@ struct NewTimerView: View {
     let frameWidth : CGFloat = 350
     let frameHeight : CGFloat = 400
     
-    @FocusState private var textFieldFocus: Bool
-
     // Used to dismiss the view
     @Environment(\.dismiss) private var dismiss
     
