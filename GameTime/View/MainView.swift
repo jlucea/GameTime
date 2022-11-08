@@ -152,11 +152,13 @@ struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
         
-        let timer1 = PlayerTimer(name: "Jaime", color: .brown, maxTime: 3044)
-        let timer2 = PlayerTimer(name: "Mª Antonia", color: .yellow, maxTime: 6375)
-        let timer3 = PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 7971)
-        let timer4 = PlayerTimer(name: "Didi", color: .green, maxTime: 3829)
-        let array : [PlayerTimer] = [timer1, timer2, timer3, timer4]
+        let timer1 = PlayerTimer(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
+        let timer2 = PlayerTimer(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
+        timer2.isPaused = false
+        let timer3 = PlayerTimer(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
+        let timer4 = PlayerTimer(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
+        let timer5 = PlayerTimer(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
+        let array : [PlayerTimer] = [timer1, timer2, timer3, timer4, timer5]
         
         let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
                         

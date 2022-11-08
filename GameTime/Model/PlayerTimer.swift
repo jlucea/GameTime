@@ -28,6 +28,15 @@ class PlayerTimer : ObservableObject {
         self.remainingSeconds = maxTimeSeconds
     }
     
+    init(name: String, color: Color, maxTime: Int, remainingTime: Int){
+        self.name = name
+        self.color = color
+        self.maxTimeSeconds = maxTime
+        self.isPaused = true
+        self.remainingSeconds = maxTimeSeconds
+        self.remainingSeconds = remainingTime
+    }
+    
     func start(){
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(tick)), userInfo: nil, repeats: true)
         self.isPaused = false
