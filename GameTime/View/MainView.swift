@@ -60,7 +60,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        showAddNewTimerScreen.toggle()
+                        showAddNewTimerScreen = true
                     }, label: {
                         Image(systemName: "person.crop.circle.badge.plus")
                     })

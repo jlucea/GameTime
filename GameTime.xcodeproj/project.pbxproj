@@ -20,6 +20,7 @@
 		6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */; };
 		6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */; };
 		6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */; };
+		6FF03B742CA310180033E397 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6FF03B732CA310120033E397 /* .gitignore */; };
 		6FF1B0EB2906CA21001B9E38 /* ActiveTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
+		6FF03B732CA310120033E397 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 		6FA853C928FB1A78005E4EC1 /* GameTime */ = {
 			isa = PBXGroup;
 			children = (
+				6FF03B732CA310120033E397 /* .gitignore */,
 				6F23470F290290F600A765BE /* Model */,
 				6F2347142902932700A765BE /* Manager */,
 				6F23470529028FCA00A765BE /* View */,
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */,
+				6FF03B742CA310180033E397 /* .gitignore in Resources */,
 				6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,7 +367,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -399,7 +403,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
