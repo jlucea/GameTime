@@ -55,8 +55,6 @@
 		6F23470529028FCA00A765BE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6FF03B762CA312480033E397 /* iPhone */,
-				6FF03B752CA312410033E397 /* iPad */,
 				6F370DFE290BEBF900A407C0 /* Components */,
 				6FA853CC28FB1A78005E4EC1 /* MainView.swift */,
 				6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */,
@@ -129,20 +127,6 @@
 				6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6FF03B752CA312410033E397 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iPad;
-			sourceTree = "<group>";
-		};
-		6FF03B762CA312480033E397 /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iPhone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
