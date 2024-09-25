@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum TimerViewSize {
+    case large      // For iPad
+    case medium     // For iPhone
+}
+
 struct ActiveTimerView: View {
     
     @EnvironmentObject var controller : StateController
@@ -19,29 +24,32 @@ struct ActiveTimerView: View {
     //
     @ObservedObject var timer : PlayerTimer
     
-    private let button_size = CGFloat(66)
+    let size: TimerViewSize
     
     var body: some View {
         
         ZStack {
-            
-            CircularProgressView(color: timer.color
-                                 , progress: timer.getProgress(), lineWidth: 20)
-            .frame(width: 400, height: 400)
+            let circleSize = (size == .large ? CGFloat(400) : 300)
+            CircularProgressView(color: timer.color, progress: timer.getProgress(), lineWidth: 18)
+                .frame(width: circleSize, height: circleSize)
             
             // Vertical stack containing player name, active timer and timer controls
             VStack {
                 Spacer()
+                let labelFontSize: CGFloat = (size == .large ? 32 : 24)
                 Text(timer.name)
-                    .font(.system(size: 32))
+                    .font(.system(size: labelFontSize))
                     .foregroundColor(timer.color)
-                    .padding()
+                    .padding(.bottom)
                 
+                let timeFontSize: CGFloat = (size == .large ? 52 : 38)
                 Text(timer.getTimeString())
-                    .font(.custom("Corsiva Hebrew", size: 58, relativeTo: .title))
-                    .padding(.bottom, 50)
+                    .font(.custom("Corsiva Hebrew", size: timeFontSize, relativeTo: .title))
+                    .padding(.bottom, (size == .large ? 50 : 30))
                 
-                // Display timer controls
+                // MARK: Buttons
+                
+                let buttonSize = (size == .large ? CGFloat(66) : CGFloat(50))
                 HStack {
                     Button (action: {
                         // start/pause active timer
@@ -56,23 +64,23 @@ struct ActiveTimerView: View {
                         if (timer.isPaused) {
                             Image(systemName: "play.circle")
                                 .resizable()
-                                .frame(width: button_size, height: button_size)
+                                .frame(width: buttonSize, height: buttonSize)
                                 .tint(.white)
                         } else {
                             Image(systemName: "pause.circle")
                                 .resizable()
-                                .frame(width: button_size, height: button_size)
+                                .frame(width: buttonSize, height: buttonSize)
                                 .tint(.white)
                         }
                     })
-                    .padding(.trailing, 50)
+                    .padding(.trailing, (size == .large ? 50 : 28))
                     
                     Button (action: {
                         //
                         // "All observable objects automatically get access to an objectWillChange property,
                         //  which has a send() method we can all whenever we want observing views to refresh."
                         //
-                        // We call objectWillChange.sedn() here for the view to be ready to update itself
+                        // We call objectWillChange.send() here for the view to be ready to update itself
                         //  when we activate the next timer in the controller.
                         //
                         if (controller.timers.count > 1) {
@@ -82,7 +90,7 @@ struct ActiveTimerView: View {
                     }, label: {
                         Image(systemName: "arrow.right.circle")
                             .resizable()
-                            .frame(width: button_size, height: button_size)
+                            .frame(width: buttonSize, height: buttonSize)
                             .tint(.white)
                     })
                 }
@@ -96,11 +104,12 @@ struct ActiveTimerView: View {
 struct TimerControlView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ActiveTimerView(timer: PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 2199))
+        ActiveTimerView(timer: PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 2199), size: .medium)
             .previewLayout(.sizeThatFits)
-            .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
-            .previewInterfaceOrientation(.landscapeLeft)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 16"))
             .preferredColorScheme(.dark)
+            .padding(.horizontal, 50)
+            .padding(.bottom, 120)
     }
 
 }

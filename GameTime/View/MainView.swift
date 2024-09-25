@@ -43,9 +43,10 @@ struct MainView: View {
                     
                 } else {
                     // Display active timer and controls
-                    ActiveTimerView(timer: controller.activeTimer!)
+                    ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
+                        .padding()
                 }
-                
+                                
                 // Horizontal scroll bar at the bottom of the screen
                 ScrollView(.horizontal) {
                     HStack {
@@ -56,6 +57,8 @@ struct MainView: View {
                     }
                 }
                 .padding(.leading)
+                
+                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -77,7 +80,7 @@ struct MainView: View {
                     EditButton()
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.automatic)
         }
         .navigationViewStyle(.stack)
         .environmentObject(controller)
@@ -163,8 +166,7 @@ struct ContentView_Previews: PreviewProvider {
         let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
                         
         return MainView(controller: envObject)
-            .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
-            .previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.portrait)
             .preferredColorScheme(.dark)
             .previewDisplayName("GameTime - Main View (Session Ongoing)")
     }
