@@ -69,16 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				6F234711290290F600A765BE /* PlayerTimer.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		6F2347142902932700A765BE /* Manager */ = {
-			isa = PBXGroup;
-			children = (
 				6F2347152902934C00A765BE /* StateController.swift */,
 			);
-			path = Manager;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6F370DFE290BEBF900A407C0 /* Components */ = {
@@ -112,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				6F23470F290290F600A765BE /* Model */,
-				6F2347142902932700A765BE /* Manager */,
 				6F23470529028FCA00A765BE /* View */,
 				6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */,
 				6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */,
