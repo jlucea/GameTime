@@ -93,7 +93,7 @@ struct NewTimerView: View {
 //        print("Seconds selected: \(totalSecondsSelected)")
         
         // Instantiate and add new timer
-        let newTimer = PlayerTimer(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
+        let newTimer = TimerViewModel(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
         timerController.addTimer(timer: newTimer)
         
         // Dismiss view

@@ -9,8 +9,8 @@ import Foundation
 
 final class StateController : ObservableObject {
     
-    @Published private(set) var timers : [PlayerTimer]
-    @Published private(set) var activeTimer : PlayerTimer?
+    @Published private(set) var timers : [TimerViewModel]
+    @Published private(set) var activeTimer : TimerViewModel?
     
     private var activeTimerIndex : Int
     
@@ -19,13 +19,13 @@ final class StateController : ObservableObject {
         activeTimerIndex = 0
     }
     
-    init(timers: [PlayerTimer], activeTimerIndex: Int) {
+    init(timers: [TimerViewModel], activeTimerIndex: Int) {
         self.timers = timers
         self.activeTimerIndex = activeTimerIndex
         self.activeTimer = timers[activeTimerIndex]
     }
     
-    func addTimer(timer: PlayerTimer) {
+    func addTimer(timer: TimerViewModel) {
         timers.append(timer)
         if (timers.count == 1) {
             activeTimer = timer
@@ -45,14 +45,14 @@ final class StateController : ObservableObject {
             }
             activeTimer = timers[activeTimerIndex]
             print("New active timer = \(activeTimer!.name)")
-            if (activeTimer!.remainingSeconds > 0 ) {
+            if (activeTimer!.timeRemaining > 0 ) {
                 activeTimer!.resume()
             }
             
         }
     }
     
-    func delete(timer: PlayerTimer) {
+    func delete(timer: TimerViewModel) {
         let wasRunning = !timer.isPaused
         if wasRunning {
             timer.pause()
@@ -74,7 +74,7 @@ final class StateController : ObservableObject {
         // Note that the deleted timer remains paused and out of the timers array, but still instantated
     }
     
-    func makeActive(timer: PlayerTimer) {
+    func makeActive(timer: TimerViewModel) {
         // Find the index of the timer and update activeTimerIndex accordingly
         if let timerIndex = timers.firstIndex(where: { $0.id == timer.id } ) {
             var wasRunning = false
@@ -88,13 +88,13 @@ final class StateController : ObservableObject {
             // Update active timer and resume (only if the previous active timer was running)
             activeTimer = timer
             activeTimerIndex = timerIndex
-            if (wasRunning == true && activeTimer!.remainingSeconds > 0) {
+            if (wasRunning == true && activeTimer!.timeRemaining > 0) {
                 activeTimer!.resume()
             }
         }
     }
     
-    func isActive(timer: PlayerTimer) -> Bool {
+    func isActive(timer: TimerViewModel) -> Bool {
         if let timerIndex = timers.firstIndex(where: { $0.id == timer.id } ) {
             return self.activeTimerIndex == timerIndex
         } else {

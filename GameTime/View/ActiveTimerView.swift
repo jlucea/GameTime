@@ -22,7 +22,7 @@ struct ActiveTimerView: View {
     // This observed property would be needed even if the values displayed
     //  on the view elements were taken from the controller (controller.activeTimer.name)!
     //
-    @ObservedObject var timer : PlayerTimer
+    @ObservedObject var timer : TimerViewModel
     
     let size: TimerViewSize
     
@@ -54,10 +54,10 @@ struct ActiveTimerView: View {
                     Button (action: {
                         // start/pause active timer
                         if (timer.isPaused) {
-                            print("PLAY timer \(timer.name): \(timer.remainingSeconds) seconds left")
+                            print("PLAY timer \(timer.name): \(timer.timeRemaining) seconds left")
                             timer.start()
                         } else {
-                            print("PAUSE timer \(timer.name): \(timer.remainingSeconds) seconds left")
+                            print("PAUSE timer \(timer.name): \(timer.timeRemaining) seconds left")
                             timer.pause()
                         }
                     }, label: {
@@ -104,7 +104,7 @@ struct ActiveTimerView: View {
 struct TimerControlView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ActiveTimerView(timer: PlayerTimer(name: "Fco. Javier", color: .blue, maxTime: 2199), size: .medium)
+        ActiveTimerView(timer: TimerViewModel(name: "Fco. Javier", color: .blue, maxTime: 2199), size: .medium)
             .previewLayout(.sizeThatFits)
             .previewDevice(PreviewDevice(rawValue: "iPhone 16"))
             .preferredColorScheme(.dark)

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  GameTime
 //
 //  Created by Jaime Lucea on 15/10/22.
@@ -20,8 +20,6 @@ struct MainView: View {
     @State private var showAddNewTimerScreen : Bool = false
         
     private let toolbarTitle = "GameTime"
-    private let titleText = "Welcome to GameTime"
-    private let subtitleText = "Setup a timer to begin"
     
     var body: some View {
         
@@ -29,18 +27,7 @@ struct MainView: View {
         NavigationView {
             VStack {
                 if (controller.timers.isEmpty) {
-                    // Empty (no timers) view:
-                    // Show message, inviting the user to setup a timer
-                    Spacer()
-                    Image(systemName: "clock")
-                    Text(titleText)
-                        .font(.system(size: 32))
-                        .padding()
-                    Text(subtitleText)
-                        .font(.subheadline)
-                        .padding()
-                    Spacer()
-                    
+                    EmptyView()
                 } else {
                     // Display active timer and controls
                     ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
@@ -99,7 +86,7 @@ struct MainView: View {
                 
                 if (controller.timers.isEmpty == false) {
                     if let activeTimer = controller.activeTimer {
-                        if (activeTimer.isPaused == false && activeTimer.remainingSeconds > 0) {
+                        if (activeTimer.isPaused == false && activeTimer.timeRemaining > 0) {
                             print("GameTime becoming active while timer is running")
                             print("Recovering background time")
                             if let backgroundDate : Date = UserDefaults.standard.object(forKey: "backgroundTime") as? Date {
@@ -109,12 +96,12 @@ struct MainView: View {
                                 formatter.allowedUnits = [.second]
                                 print("App was in the background for \(formatter.string(from: secondsInBackground)!) seconds")
                                 
-                                if (Int(secondsInBackground) >= activeTimer.remainingSeconds) {
-                                    activeTimer.remainingSeconds = 0
+                                if (Int(secondsInBackground) >= activeTimer.timeRemaining) {
+                                    activeTimer.timeRemaining = 0
                                     activeTimer.pause()
                                 } else {
                                     // Subtract from active timer the time passed since the app entered background
-                                    activeTimer.remainingSeconds -= Int(secondsInBackground)
+                                    activeTimer.timeRemaining -= Int(secondsInBackground)
                                 }
                             }
                         }
@@ -155,13 +142,13 @@ struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
         
-        let timer1 = PlayerTimer(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
-        let timer2 = PlayerTimer(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
+        let timer1 = TimerViewModel(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
+        let timer2 = TimerViewModel(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
         timer2.isPaused = false
-        let timer3 = PlayerTimer(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
-        let timer4 = PlayerTimer(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
-        let timer5 = PlayerTimer(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
-        let array : [PlayerTimer] = [timer1, timer2, timer3, timer4, timer5]
+        let timer3 = TimerViewModel(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
+        let timer4 = TimerViewModel(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
+        let timer5 = TimerViewModel(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
+        let array : [TimerViewModel] = [timer1, timer2, timer3, timer4, timer5]
         
         let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
                         
