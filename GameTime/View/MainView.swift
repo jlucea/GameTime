@@ -13,7 +13,7 @@ struct MainView: View {
     // Instance of the controller class, that will be responsible for managing timers and their states.
     // This object is made available to other views and subviews as an @EnvironmentObject
     //
-    @ObservedObject var controller = StateController()
+    @StateObject var controller = GTTimerManager()
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -38,7 +38,7 @@ struct MainView: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(controller.timers, id: \.id) { timer in
-                            TimerCard(timer: timer)
+                            TimerCardView(timer: timer)
                                 .padding(.trailing, 8)
                         }
                     }
@@ -142,15 +142,15 @@ struct ContentView_Previews: PreviewProvider {
         
     static var previews: some View {
         
-        let timer1 = TimerViewModel(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
-        let timer2 = TimerViewModel(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
+        let timer1 = GTTimer(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
+        let timer2 = GTTimer(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
         timer2.isPaused = false
-        let timer3 = TimerViewModel(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
-        let timer4 = TimerViewModel(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
-        let timer5 = TimerViewModel(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
-        let array : [TimerViewModel] = [timer1, timer2, timer3, timer4, timer5]
+        let timer3 = GTTimer(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
+        let timer4 = GTTimer(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
+        let timer5 = GTTimer(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
+        let array : [GTTimer] = [timer1, timer2, timer3, timer4, timer5]
         
-        let envObject : StateController = StateController(timers: array, activeTimerIndex: 1)
+        let envObject : GTTimerManager = GTTimerManager(timers: array, activeTimerIndex: 1)
                         
         return MainView(controller: envObject)
             .previewInterfaceOrientation(.portrait)

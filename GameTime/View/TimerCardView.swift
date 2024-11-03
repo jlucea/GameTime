@@ -7,21 +7,19 @@
 
 import SwiftUI
 
-struct TimerCard: View {
+struct TimerCardView: View {
     
     @Environment(\.editMode) private var editMode
     
-    @EnvironmentObject var controller : StateController
+    @EnvironmentObject var controller: GTTimerManager
+    @ObservedObject var timer: GTTimer
     
-    @ObservedObject var timer : TimerViewModel
-    
-    private let cardWidth : CGFloat = 200
-    private let cardHeight : CGFloat = 200
-    private let circleFrameWidth : CGFloat = 160
-    private let circleFrameHeight : CGFloat = 160
+    private let cardWidth: CGFloat = 200
+    private let cardHeight: CGFloat = 200
+    private let circleFrameWidth: CGFloat = 160
+    private let circleFrameHeight: CGFloat = 160
     
     var body: some View {
-
         ZStack{
             CircularProgressView(color: timer.color
                                  , progress: timer.getProgress(), lineWidth: 6)
@@ -51,10 +49,10 @@ struct TimerCard: View {
             }
         }
         .overlay(alignment: .topLeading) {
+            // A delete button will be displayed when edit mode is turned on
             if editMode?.wrappedValue.isEditing == true {
-                // The delete button will only be displayed when in edit mode
                 Button(action: {
-                    controller.delete(timer: timer)
+                    controller.deleteTimer(timer)
                 }) {
                     Image(systemName: "minus.circle.fill")
                         .resizable()
@@ -66,15 +64,11 @@ struct TimerCard: View {
             }
         }
         .onTapGesture {
-            print("Timer \(timer.name) tapped")
+            // When the card view is tapped, the corresponding timer will activate
             if (controller.isActive(timer: timer) == false) {
-                controller.makeActive(timer: timer)
+                controller.makeActive(timer)
             }
-//            if (timer.isPaused && timer.remainingSeconds > 0) {
-//                timer.resume()
-//            }
         }
-        
     } // Body
 
 }
@@ -83,8 +77,8 @@ struct TimerCard: View {
 struct TimerCard_Previews: PreviewProvider {
     
     static var previews: some View {
-        let previewClock : TimerViewModel = TimerViewModel(name: "Player #3", color: .green, maxTime: 6155)
-        TimerCard(timer: previewClock)
+        let previewClock : GTTimer = GTTimer(name: "Player #3", color: .green, maxTime: 6155)
+        TimerCardView(timer: previewClock)
             .previewDevice(.none)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)

@@ -10,8 +10,8 @@
 		6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0F9066290E929D000E7E22 /* CircularProgressView.swift */; };
 		6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234701290197EF00A765BE /* TimeDurationPickerView.swift */; };
 		6F23470429019A1200A765BE /* NewTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23470329019A1200A765BE /* NewTimerView.swift */; };
-		6F234713290290F700A765BE /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234711290290F600A765BE /* TimerViewModel.swift */; };
-		6F2347162902934C00A765BE /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2347152902934C00A765BE /* StateController.swift */; };
+		6F234713290290F700A765BE /* GTTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234711290290F600A765BE /* GTTimer.swift */; };
+		6F2347162902934C00A765BE /* GTTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2347152902934C00A765BE /* GTTimerManager.swift */; };
 		6F370E00290BEC1400A407C0 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370DFF290BEC1400A407C0 /* PickerView.swift */; };
 		6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370E01290BEC7800A407C0 /* TimePickerView.swift */; };
 		6F758EB1291924B500A42647 /* TimerNameInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F758EB0291924B500A42647 /* TimerNameInputView.swift */; };
@@ -28,8 +28,8 @@
 		6F0F9066290E929D000E7E22 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		6F234701290197EF00A765BE /* TimeDurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDurationPickerView.swift; sourceTree = "<group>"; };
 		6F23470329019A1200A765BE /* NewTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerView.swift; sourceTree = "<group>"; };
-		6F234711290290F600A765BE /* TimerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
-		6F2347152902934C00A765BE /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		6F234711290290F600A765BE /* GTTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTTimer.swift; sourceTree = "<group>"; };
+		6F2347152902934C00A765BE /* GTTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTTimerManager.swift; sourceTree = "<group>"; };
 		6F370DFF290BEC1400A407C0 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		6F370E01290BEC7800A407C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		6F758EB0291924B500A42647 /* TimerNameInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNameInputView.swift; sourceTree = "<group>"; };
@@ -71,8 +71,8 @@
 		6F23470F290290F600A765BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F234711290290F600A765BE /* TimerViewModel.swift */,
-				6F2347152902934C00A765BE /* StateController.swift */,
+				6F234711290290F600A765BE /* GTTimer.swift */,
+				6F2347152902934C00A765BE /* GTTimerManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,14 +196,14 @@
 			files = (
 				6F23470429019A1200A765BE /* NewTimerView.swift in Sources */,
 				6FF1B0EB2906CA21001B9E38 /* ActiveTimerView.swift in Sources */,
-				6F2347162902934C00A765BE /* StateController.swift in Sources */,
+				6F2347162902934C00A765BE /* GTTimerManager.swift in Sources */,
 				6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */,
 				6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */,
 				6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */,
 				6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */,
 				6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */,
 				6F758EB1291924B500A42647 /* TimerNameInputView.swift in Sources */,
-				6F234713290290F700A765BE /* TimerViewModel.swift in Sources */,
+				6F234713290290F700A765BE /* GTTimer.swift in Sources */,
 				6F81B5D22CA6FE740020BE44 /* EmptyView.swift in Sources */,
 				6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */,
 				6F370E00290BEC1400A407C0 /* PickerView.swift in Sources */,

@@ -14,7 +14,7 @@ enum TimerViewSize {
 
 struct ActiveTimerView: View {
     
-    @EnvironmentObject var controller : StateController
+    @EnvironmentObject var controller : GTTimerManager
     
     //
     // This View could perfectly get the active timer from controller. Instead, it uses an observed property timer.
@@ -22,7 +22,7 @@ struct ActiveTimerView: View {
     // This observed property would be needed even if the values displayed
     //  on the view elements were taken from the controller (controller.activeTimer.name)!
     //
-    @ObservedObject var timer : TimerViewModel
+    @ObservedObject var timer : GTTimer
     
     let size: TimerViewSize
     
@@ -85,7 +85,7 @@ struct ActiveTimerView: View {
                         //
                         if (controller.timers.count > 1) {
                             controller.objectWillChange.send()
-                            controller.next()
+                            controller.activateNextTimer()
                         }
                     }, label: {
                         Image(systemName: "arrow.right.circle")
@@ -104,7 +104,7 @@ struct ActiveTimerView: View {
 struct TimerControlView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ActiveTimerView(timer: TimerViewModel(name: "Fco. Javier", color: .blue, maxTime: 2199), size: .medium)
+        ActiveTimerView(timer: GTTimer(name: "Fco. Javier", color: .blue, maxTime: 2199), size: .medium)
             .previewLayout(.sizeThatFits)
             .previewDevice(PreviewDevice(rawValue: "iPhone 16"))
             .preferredColorScheme(.dark)
