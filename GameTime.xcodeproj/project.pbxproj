@@ -10,11 +10,12 @@
 		6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0F9066290E929D000E7E22 /* CircularProgressView.swift */; };
 		6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234701290197EF00A765BE /* TimeDurationPickerView.swift */; };
 		6F23470429019A1200A765BE /* NewTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23470329019A1200A765BE /* NewTimerView.swift */; };
-		6F234713290290F700A765BE /* PlayerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234711290290F600A765BE /* PlayerTimer.swift */; };
-		6F2347162902934C00A765BE /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2347152902934C00A765BE /* StateController.swift */; };
+		6F234713290290F700A765BE /* GTTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F234711290290F600A765BE /* GTTimer.swift */; };
+		6F2347162902934C00A765BE /* GTTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2347152902934C00A765BE /* GTTimerManager.swift */; };
 		6F370E00290BEC1400A407C0 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370DFF290BEC1400A407C0 /* PickerView.swift */; };
 		6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F370E01290BEC7800A407C0 /* TimePickerView.swift */; };
 		6F758EB1291924B500A42647 /* TimerNameInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F758EB0291924B500A42647 /* TimerNameInputView.swift */; };
+		6F81B5D22CA6FE740020BE44 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F81B5D12CA6FE740020BE44 /* EmptyView.swift */; };
 		6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */; };
 		6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853CC28FB1A78005E4EC1 /* MainView.swift */; };
 		6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */; };
@@ -27,11 +28,12 @@
 		6F0F9066290E929D000E7E22 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		6F234701290197EF00A765BE /* TimeDurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDurationPickerView.swift; sourceTree = "<group>"; };
 		6F23470329019A1200A765BE /* NewTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerView.swift; sourceTree = "<group>"; };
-		6F234711290290F600A765BE /* PlayerTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTimer.swift; sourceTree = "<group>"; };
-		6F2347152902934C00A765BE /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		6F234711290290F600A765BE /* GTTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTTimer.swift; sourceTree = "<group>"; };
+		6F2347152902934C00A765BE /* GTTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTTimerManager.swift; sourceTree = "<group>"; };
 		6F370DFF290BEC1400A407C0 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		6F370E01290BEC7800A407C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		6F758EB0291924B500A42647 /* TimerNameInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNameInputView.swift; sourceTree = "<group>"; };
+		6F81B5D12CA6FE740020BE44 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		6FA853C728FB1A78005E4EC1 /* GameTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeApp.swift; sourceTree = "<group>"; };
 		6FA853CC28FB1A78005E4EC1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				6F370DFE290BEBF900A407C0 /* Components */,
 				6FA853CC28FB1A78005E4EC1 /* MainView.swift */,
+				6F81B5D12CA6FE740020BE44 /* EmptyView.swift */,
 				6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */,
 				6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */,
 				6F23470329019A1200A765BE /* NewTimerView.swift */,
@@ -68,17 +71,10 @@
 		6F23470F290290F600A765BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F234711290290F600A765BE /* PlayerTimer.swift */,
+				6F234711290290F600A765BE /* GTTimer.swift */,
+				6F2347152902934C00A765BE /* GTTimerManager.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		6F2347142902932700A765BE /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				6F2347152902934C00A765BE /* StateController.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		6F370DFE290BEBF900A407C0 /* Components */ = {
@@ -112,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				6F23470F290290F600A765BE /* Model */,
-				6F2347142902932700A765BE /* Manager */,
 				6F23470529028FCA00A765BE /* View */,
 				6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */,
 				6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */,
@@ -157,7 +152,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					6FA853C628FB1A78005E4EC1 = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -201,14 +196,15 @@
 			files = (
 				6F23470429019A1200A765BE /* NewTimerView.swift in Sources */,
 				6FF1B0EB2906CA21001B9E38 /* ActiveTimerView.swift in Sources */,
-				6F2347162902934C00A765BE /* StateController.swift in Sources */,
+				6F2347162902934C00A765BE /* GTTimerManager.swift in Sources */,
 				6F234702290197EF00A765BE /* TimeDurationPickerView.swift in Sources */,
 				6FA853CD28FB1A78005E4EC1 /* MainView.swift in Sources */,
 				6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */,
 				6F370E02290BEC7800A407C0 /* TimePickerView.swift in Sources */,
 				6F0F9067290E929D000E7E22 /* CircularProgressView.swift in Sources */,
 				6F758EB1291924B500A42647 /* TimerNameInputView.swift in Sources */,
-				6F234713290290F700A765BE /* PlayerTimer.swift in Sources */,
+				6F234713290290F700A765BE /* GTTimer.swift in Sources */,
+				6F81B5D22CA6FE740020BE44 /* EmptyView.swift in Sources */,
 				6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */,
 				6F370E00290BEC1400A407C0 /* PickerView.swift in Sources */,
 			);
@@ -253,6 +249,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -313,6 +310,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -355,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jlucea.GameTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -363,7 +361,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -391,7 +389,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jlucea.GameTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -399,7 +397,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewTimerView: View {
     
-    @EnvironmentObject var timerController : StateController
+    @EnvironmentObject var timerController : GTTimerManager
     
     @State private var playerName : String = "Player"
     
@@ -93,7 +93,7 @@ struct NewTimerView: View {
 //        print("Seconds selected: \(totalSecondsSelected)")
         
         // Instantiate and add new timer
-        let newTimer = PlayerTimer(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
+        let newTimer = GTTimer(name: playerName, color: selectedColor, maxTime: totalSecondsSelected)
         timerController.addTimer(timer: newTimer)
         
         // Dismiss view
