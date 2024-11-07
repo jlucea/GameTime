@@ -56,7 +56,7 @@ struct MainView: View {
                     })
                     .padding(.bottom, 6)
                     .popover(isPresented: $showAddNewTimerScreen, content: {
-                        NewTimerView()
+                        CreateTimerView(isPresented: $showAddNewTimerScreen, controller)
                     } )
                 }
                 ToolbarItem(placement: .principal) {
@@ -144,7 +144,6 @@ struct ContentView_Previews: PreviewProvider {
         
         let timer1 = GTTimer(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101)
         let timer2 = GTTimer(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024)
-        timer2.isPaused = false
         let timer3 = GTTimer(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505)
         let timer4 = GTTimer(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999)
         let timer5 = GTTimer(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)

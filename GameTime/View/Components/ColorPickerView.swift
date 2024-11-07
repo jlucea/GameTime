@@ -10,11 +10,12 @@ import SwiftUI
 private struct CircularColorOptionView: View {
     
     let color: Color
-    let isSelected: Bool
+    
+    @Binding var isSelected: Bool
     
     var body: some View {
         Circle()
-            .frame(width: 42, height: 42)
+            .frame(width: 40, height: 40)
             .foregroundStyle(color)
             .overlay(
                 Circle()
@@ -24,23 +25,44 @@ private struct CircularColorOptionView: View {
     }
 }
 
+/// A SwiftUI view that presents a grid of selectable colors for the user.
+///
+/// `ColorPickerView` displays a set of color options in a grid format, allowing the user to
+/// pick a color, which is then bound to an external `selectedColor` property. An optional
+/// action can be triggered whenever a color is selected.
+///
+/// - Properties:
+///   - selectedColor: A binding to the currently selected color, allowing changes to be
+///     reflected outside this view.
+///   - onSelectedAction: An optional closure that is executed each time a color is selected.
+///   - colorSet: A predefined array of colors available for selection. Defaults to a
+///     standard set of colors, including `.yellow`, `.red`, `.blue`, and others.
+///   - colorsPerRow: The number of colors displayed per row in the grid. Defaults to `5`.
 public struct ColorPickerView: View {
     
     @Binding var selectedColor: Color
+    
+    let onSelectedAction: (() -> Void)? = nil
     
     let colorSet: [Color] = [.yellow, .red, .blue, .green, .gray, .white, .orange, .purple, .brown, .mint]
     let colorsPerRow: Int = 5
     
     public var body: some View {
-        VStack (spacing: 22) {
+        VStack (spacing: 18) {
             ForEach(colorSet.chunked(into: colorsPerRow), id: \.self) { colorRow in
                 HStack (spacing: 14) {
                     ForEach(colorRow, id: \.self) { color in
-                        CircularColorOptionView(color: color, isSelected: color == selectedColor)
-                            .onTapGesture {
-//                                print("Selected \(color.description)")
-                                selectedColor = color
-                            }
+                        CircularColorOptionView(
+                            color: color,
+                            isSelected: Binding(
+                                get: { color == selectedColor },
+                                set: { _ in }  // No action needed in set
+                            )
+                        )
+                        .onTapGesture {
+                            print("Selected \(color.description)")
+                            selectedColor = color
+                        }
                     }
                 }
             }
