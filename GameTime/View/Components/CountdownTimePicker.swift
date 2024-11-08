@@ -43,3 +43,7 @@ public struct CountdownTimePicker: View {
         }
     }
 }
+
+#Preview {
+    CountdownTimePicker(hours: .constant(0), minutes: .constant(10), seconds: .constant(30))
+}
