@@ -27,9 +27,11 @@ struct CreateTimerView: View {
                 Form {
                     HStack {
                         Text("Name")
+                            .frame(minWidth: 0, idealWidth: .infinity, alignment: .leading)
                         TextField("Name", text: $viewModel.name)
                             .multilineTextAlignment(.trailing)
                             .autocorrectionDisabled()
+                            .submitLabel(.done)
                     }
                     HStack {
                         Text("Color")
@@ -42,7 +44,6 @@ struct CreateTimerView: View {
                             }
                     }
                 }
-                
             }
             .navigationTitle("Timer")
             .navigationBarTitleDisplayMode(.inline)
