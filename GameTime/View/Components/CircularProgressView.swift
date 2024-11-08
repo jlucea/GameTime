@@ -39,5 +39,6 @@ struct CircularProgressView: View {
 struct CircularProgressView_Previews: PreviewProvider {
     static var previews: some View {
         CircularProgressView(color: Color.green, progress: 0.7, lineWidth: 18)
+            .padding(50)
     }
 }
