@@ -42,10 +42,10 @@ public struct ColorPickerView: View {
     
     @Binding var selectedColor: Color
     
-    let onSelectedAction: (() -> Void)? = nil
+    var onSelectedAction: (() -> Void)? = nil
     
-    let colorSet: [Color] = [.yellow, .red, .blue, .green, .gray, .white, .orange, .purple, .brown, .mint]
-    let colorsPerRow: Int = 5
+    var colorSet: [Color] = [.yellow, .red, .blue, .green, .gray, .white, .orange, .purple, .brown, .mint]
+    var colorsPerRow: Int = 5
     
     public var body: some View {
         VStack (spacing: 18) {
@@ -60,8 +60,8 @@ public struct ColorPickerView: View {
                             )
                         )
                         .onTapGesture {
-                            print("Selected \(color.description)")
                             selectedColor = color
+                            self.onSelectedAction?()
                         }
                     }
                 }

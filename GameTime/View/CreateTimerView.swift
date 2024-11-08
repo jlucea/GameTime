@@ -11,6 +11,8 @@ struct CreateTimerView: View {
     
     @StateObject private var viewModel: ViewModel
     
+    @State private var showColorPicker: Bool = false
+    
     @Environment(\.dismiss) private var dismiss
     
     init(isPresented: Binding<Bool>, _ manager: GTTimerManager? = nil) {
@@ -22,11 +24,25 @@ struct CreateTimerView: View {
             VStack (spacing: 6) {
                 CountdownTimePicker(hours: $viewModel.time[0], minutes: $viewModel.time[1], seconds: $viewModel.time[2])
                 
-                GTTextFieldView(text: $viewModel.name)
-                    .padding(.horizontal, 28)
-                    
-                ColorPickerView(selectedColor: $viewModel.color)
-                    .padding(.top, 18)
+                Form {
+                    HStack {
+                        Text("Name")
+                        TextField("Name", text: $viewModel.name)
+                            .multilineTextAlignment(.trailing)
+                            .autocorrectionDisabled()
+                    }
+                    HStack {
+                        Text("Color")
+                        Spacer()
+                        Circle()
+                            .foregroundStyle(viewModel.color)
+                            .frame(width: 20, height: 20)
+                            .onTapGesture {
+                                showColorPicker = true
+                            }
+                    }
+                }
+                
             }
             .navigationTitle("Timer")
             .navigationBarTitleDisplayMode(.inline)
@@ -43,6 +59,12 @@ struct CreateTimerView: View {
                 }
             }
             .padding(.horizontal)
+            .sheet(isPresented: $showColorPicker) {
+                ColorPickerView(selectedColor: $viewModel.color) {
+                    showColorPicker = false
+                }
+                .padding(.top, 18)
+            }
         }
     }
     
@@ -53,7 +75,7 @@ extension CreateTimerView {
     class ViewModel: ObservableObject {
         
         @Published var name: String = ""
-        @Published var color: Color = .white
+        @Published var color: Color = .blue
         @Published var time: [Int] = [0, 30, 0]
         
         @Binding var isPresented: Bool
