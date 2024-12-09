@@ -17,7 +17,8 @@ struct CreateTimerView: View {
     var body: some View {
         NavigationView {
             VStack (spacing: 6) {
-                CountdownTimePicker(hours: $viewModel.time[0], minutes: $viewModel.time[1], seconds: $viewModel.time[2])
+                
+                TimerDurationPicker(duration: $viewModel.duration)
                 
                 Form {
                     HStack {

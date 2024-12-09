@@ -1,9 +1,3 @@
-//
-//  TimerControlView.swift
-//  GameTime
-//
-//  Created by Jaime Lucea on 24/10/22.
-//
 
 import SwiftUI
 
