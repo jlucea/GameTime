@@ -14,6 +14,7 @@ struct GameTimeApp: App {
         WindowGroup {
             MainView()
                 .preferredColorScheme(.dark)
+                .tint(.white)
         }
     }
 }
