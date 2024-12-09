@@ -1,9 +1,3 @@
-//
-//  MainView.swift
-//  GameTime
-//
-//  Created by Jaime Lucea on 15/10/22.
-//
 
 import SwiftUI
 
@@ -25,34 +19,36 @@ struct MainView: View {
         
         // When runninng under iOS16, could use NavigationStack instead of NavigationView
         NavigationView {
-            VStack {
+            Group {
                 if (controller.timers.isEmpty) {
                     EmptyView()
                 } else {
-                    // Display active timer and controls
-                    ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
-                        .padding()
-                }
-                                
-                // Horizontal scroll bar at the bottom of the screen
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(controller.timers, id: \.id) { timer in
-                            TimerCardView(timer: timer)
-                                .padding(.trailing, 8)
+                    VStack {
+                        // Display active timer and controls
+                        ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
+                            .padding(.horizontal)
+                        
+                        // Horizontal scroll bar at the bottom of the screen
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(controller.timers, id: \.id) { timer in
+                                    TimerCardView(timer: timer)
+                                        .padding(.trailing, 8)
+                                }
+                            }
                         }
+                        .padding(.leading)
                     }
                 }
-                .padding(.leading)
-                
-                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         showAddNewTimerScreen = true
                     }, label: {
-                        Image(systemName: "person.crop.circle.badge.plus")
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 24, height: 24)
                     })
                     .padding(.bottom, 6)
                     .popover(isPresented: $showAddNewTimerScreen, content: {
@@ -137,6 +133,8 @@ struct MainView: View {
     } // End of view's body
     
 }
+
+// MARK: - Preview
 
 struct ContentView_Previews: PreviewProvider {
         

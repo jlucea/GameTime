@@ -1,31 +1,24 @@
-//
-//  CountdownTimePicker.swift
-//  GameTime
-//
-//  Created by Jaime Lucea on 7/11/24.
-//
 
 import SwiftUI
 
-public struct CountdownTimePicker: View {
-    @Binding var hours: Int
-    @Binding var minutes: Int
-    @Binding var seconds: Int
+public struct TimerDurationPicker: View {
+    
+    @Binding var duration: TimerDuration
     
     private let hourRange = Array(0...23)
     private let minuteAndSecondRange = Array(0...59)
     
     public var body: some View {
         HStack(spacing: 10) {
-            Picker(selection: $hours, label: Text("Hours")) {
+            Picker(selection: $duration.hours, label: Text("Hours")) {
                 ForEach(hourRange, id: \.self) { hour in
                     Text("\(hour) h").tag(hour)
                 }
             }
             .pickerStyle(.wheel)
-            .frame(maxWidth: 80) // Adjust width to fit your design
+            .frame(maxWidth: 80)
             
-            Picker(selection: $minutes, label: Text("Minutes")) {
+            Picker(selection: $duration.minutes, label: Text("Minutes")) {
                 ForEach(minuteAndSecondRange, id: \.self) { minute in
                     Text("\(minute) m").tag(minute)
                 }
@@ -33,7 +26,7 @@ public struct CountdownTimePicker: View {
             .pickerStyle(.wheel)
             .frame(maxWidth: 80)
             
-            Picker(selection: $seconds, label: Text("Seconds")) {
+            Picker(selection: $duration.seconds, label: Text("Seconds")) {
                 ForEach(minuteAndSecondRange, id: \.self) { second in
                     Text("\(second) s").tag(second)
                 }
@@ -45,5 +38,5 @@ public struct CountdownTimePicker: View {
 }
 
 #Preview {
-    CountdownTimePicker(hours: .constant(0), minutes: .constant(10), seconds: .constant(30))
+    TimerDurationPicker(duration: Binding.constant(.init(hours: 0, minutes: 25, seconds: 30)))
 }

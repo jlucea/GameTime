@@ -1,9 +1,3 @@
-//
-//  NewTimerScreen.swift
-//  GameTime
-//
-//  Created by Jaime Lucea on 20/10/22.
-//
 
 import SwiftUI
 
@@ -19,10 +13,12 @@ struct CreateTimerView: View {
         self._viewModel = StateObject(wrappedValue: ViewModel(isPresented: isPresented, manager))
     }
     
+    // MARK: - Body
     var body: some View {
         NavigationView {
             VStack (spacing: 6) {
-                CountdownTimePicker(hours: $viewModel.time[0], minutes: $viewModel.time[1], seconds: $viewModel.time[2])
+                
+                TimerDurationPicker(duration: $viewModel.duration)
                 
                 Form {
                     HStack {
@@ -32,16 +28,21 @@ struct CreateTimerView: View {
                             .multilineTextAlignment(.trailing)
                             .autocorrectionDisabled()
                             .submitLabel(.done)
+                            .frame(minHeight: 0, maxHeight: .infinity)  // Use all of the row's vertical space
                     }
                     HStack {
                         Text("Color")
-                        Spacer()
-                        Circle()
-                            .foregroundStyle(viewModel.color)
-                            .frame(width: 20, height: 20)
-                            .onTapGesture {
-                                showColorPicker = true
-                            }
+                        HStack {
+                            Spacer()
+                            Circle()
+                                .foregroundStyle(viewModel.color)
+                                .frame(width: 22, height: 22)
+                        }
+                        .frame(maxHeight: .infinity)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            showColorPicker = true
+                        }
                     }
                 }
             }
@@ -59,50 +60,12 @@ struct CreateTimerView: View {
                     }
                 }
             }
-            .padding(.horizontal)
             .sheet(isPresented: $showColorPicker) {
                 ColorPickerView(selectedColor: $viewModel.color) {
                     showColorPicker = false
                 }
                 .padding(.top, 18)
             }
-        }
-    }
-    
-}
-    
-extension CreateTimerView {
-    
-    class ViewModel: ObservableObject {
-        
-        @Published var name: String = ""
-        @Published var color: Color = .blue
-        @Published var time: [Int] = [0, 30, 0]
-        
-        @Binding var isPresented: Bool
-        
-        var manager: GTTimerManager?
-        
-        // Constructor with a binding to close the View upon saving
-        init(isPresented: Binding<Bool>, _ timerManager: GTTimerManager? = nil) {
-            self._isPresented = isPresented
-            self.manager = timerManager
-        }
-        
-        func saveAndClose() {
-            
-            let totalSecondsSelected = 60 * 60 * time[0] + 60 * time[1]
-            
-            print("Create new timer:")
-            print("Name: \(name)")
-            print("Duration: \(totalSecondsSelected)")
-            print("Color \(color.description)")
-            
-            // Instantiate and add new timer
-            let newTimer = GTTimer(name: name, color: color, maxTime: totalSecondsSelected)
-            manager?.addTimer(timer: newTimer)
-            
-            self.isPresented = false
         }
     }
     
