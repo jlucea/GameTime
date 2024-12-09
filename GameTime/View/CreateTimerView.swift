@@ -1,9 +1,3 @@
-//
-//  NewTimerScreen.swift
-//  GameTime
-//
-//  Created by Jaime Lucea on 20/10/22.
-//
 
 import SwiftUI
 
@@ -19,6 +13,9 @@ struct CreateTimerView: View {
         self._viewModel = StateObject(wrappedValue: ViewModel(isPresented: isPresented, manager))
     }
     
+    
+    // MARK: Body
+    
     var body: some View {
         NavigationView {
             VStack (spacing: 6) {
@@ -32,16 +29,21 @@ struct CreateTimerView: View {
                             .multilineTextAlignment(.trailing)
                             .autocorrectionDisabled()
                             .submitLabel(.done)
+                            .frame(minHeight: 0, maxHeight: .infinity)  // Use all of the row's vertical space
                     }
                     HStack {
                         Text("Color")
-                        Spacer()
-                        Circle()
-                            .foregroundStyle(viewModel.color)
-                            .frame(width: 20, height: 20)
-                            .onTapGesture {
-                                showColorPicker = true
-                            }
+                        HStack {
+                            Spacer()
+                            Circle()
+                                .foregroundStyle(viewModel.color)
+                                .frame(width: 22, height: 22)
+                        }
+                        .frame(maxHeight: .infinity)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            showColorPicker = true
+                        }
                     }
                 }
             }
@@ -59,7 +61,6 @@ struct CreateTimerView: View {
                     }
                 }
             }
-            .padding(.horizontal)
             .sheet(isPresented: $showColorPicker) {
                 ColorPickerView(selectedColor: $viewModel.color) {
                     showColorPicker = false
