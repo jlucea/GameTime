@@ -73,8 +73,10 @@ struct MainView: View {
                     Text(toolbarTitle).font(.headline)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    // Pressing this button will activate editMode
-                    EditButton()
+                    if !controller.timers.isEmpty {
+                        // Pressing this button will activate editMode
+                        EditButton()
+                    }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
