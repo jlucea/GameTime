@@ -59,7 +59,6 @@ public struct ClearButtonTextFieldViewModifier: ViewModifier {
 }
 
 #Preview {
-    @State var aName = "Romulus"
-    GTTextFieldView(text: $aName)
+    GTTextFieldView(text: State(wrappedValue: "Romulus").projectedValue)
         .padding(.horizontal, 40)
 }
