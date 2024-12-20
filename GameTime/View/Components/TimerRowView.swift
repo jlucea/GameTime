@@ -26,11 +26,18 @@ struct TimerRowView: View {
             
             //MARK: Name and time
             VStack (alignment: .leading, spacing: 5) {
-                // Label
-                Text(timer.name)
-                    .font(.system(size: 18))
-                    .foregroundStyle(timer.color)
+                HStack (spacing: 14) {
+                    // Label
+                    Text(timer.name)
+                        .font(.system(size: 18))
+                        .foregroundStyle(timer.color)
                     
+                    if timerManager.isActive(timer: timer) {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                    }
+                }
                 // Time
                 Text(timer.getTimeString())
                     .font(.system(size: 24))
@@ -46,19 +53,27 @@ struct TimerRowView: View {
         .padding(.vertical, 8)
         .padding(.horizontal, 10)
         .animation(.easeInOut(duration: 0.3), value: editMode?.wrappedValue.isEditing)
+        .contentShape(Rectangle()) // Ensures the whole area is tappable
+        .onTapGesture {
+            timerManager.makeActive(timer) // This will be triggered anywhere on the row
+        }
     }
 }
 
-//MARK: - Preview
+//MARK: - Previews
 
 #Preview("Row") {
     let timerOne = GTTimer(name: "Chufo", color: .green, maxTime: 6155)
+    let manager = GTTimerManager()
+    
     TimerRowView(timer: timerOne)
         .padding(40)
         .onAppear {
             timerOne.timeRemaining = 2500
+            manager.addTimer(timer: timerOne)
         }
         .environment(\.editMode, .constant(.active))
+        .environmentObject(manager)
 }
 
 #Preview("List") {

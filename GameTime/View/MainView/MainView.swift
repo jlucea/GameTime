@@ -50,7 +50,6 @@ struct MainView: View {
                         .listStyle(.plain)
                         .frame(height: 268)
                     }
-                    
                 }
             }
             .padding(.top, 10)
