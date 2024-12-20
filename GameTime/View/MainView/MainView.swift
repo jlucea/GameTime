@@ -13,7 +13,6 @@ struct MainView: View {
     
     @State private var showAddNewTimerScreen : Bool = false
         
-    private let toolbarTitle = "GameTime"
     
     var body: some View {
         NavigationView {
@@ -50,28 +49,7 @@ struct MainView: View {
             }
             .padding(.top, 10)
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {
-                        showAddNewTimerScreen = true
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                    })
-                    .padding(.bottom, 6)
-                    .popover(isPresented: $showAddNewTimerScreen, content: {
-                        CreateTimerView(isPresented: $showAddNewTimerScreen, controller)
-                    } )
-                }
-                ToolbarItem(placement: .principal) {
-                    Text(toolbarTitle).font(.headline)
-                }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if !controller.timers.isEmpty {
-                        // Pressing this button will activate editMode
-                        EditButton()
-                    }
-                }
+                GameTimeToolbar.content(showAddNewTimerScreen: $showAddNewTimerScreen, controller: controller)
             }
             .navigationBarTitleDisplayMode(.inline)
         }
