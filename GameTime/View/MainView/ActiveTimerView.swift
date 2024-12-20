@@ -23,7 +23,7 @@ struct ActiveTimerView: View {
     var body: some View {
         
         ZStack {
-            let circleSize = (size == .large ? CGFloat(400) : 300)
+            let circleSize = (size == .large ? CGFloat(400) : 280)
             CircularProgressView(color: timer.color, progress: timer.getProgress(), lineWidth: 18)
                 .frame(width: circleSize, height: circleSize)
             

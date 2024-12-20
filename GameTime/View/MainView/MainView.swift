@@ -19,14 +19,15 @@ struct MainView: View {
         
         // When runninng under iOS16, could use NavigationStack instead of NavigationView
         NavigationView {
-            Group {
+            VStack {
                 if (controller.timers.isEmpty) {
                     EmptyView()
                 } else {
-                    VStack {
-                        // Display active timer and controls
-                        ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
-                            .padding(.horizontal)
+                    // Display active timer and controls
+                    ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
+                        .padding(.horizontal)
+                    
+                    if UIDevice.current.userInterfaceIdiom == .pad {
                         
                         // Horizontal scroll bar at the bottom of the screen
                         ScrollView(.horizontal) {
@@ -38,9 +39,21 @@ struct MainView: View {
                             }
                         }
                         .padding(.leading)
+                        
+                    } else {
+                        
+                        List {
+                            ForEach(controller.timers, id: \.id) { timer in
+                                TimerRowView(timer: timer)
+                            }
+                        }
+                        .listStyle(.plain)
+                        .frame(height: 268)
                     }
                 }
             }
+            .padding(.top, 10)
+//            .background(Color.cyan.opacity(0.1))
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
@@ -59,13 +72,15 @@ struct MainView: View {
                     Text(toolbarTitle).font(.headline)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    // Pressing this button will activate editMode
-                    EditButton()
+                    if !controller.timers.isEmpty {
+                        // Pressing this button will activate editMode
+                        EditButton()
+                    }
                 }
             }
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(.stack)
+//        .navigationViewStyle(.stack)
         .environmentObject(controller)
         .onChange(of: scenePhase) { newPhase in
             //
@@ -153,5 +168,6 @@ struct ContentView_Previews: PreviewProvider {
             .previewInterfaceOrientation(.portrait)
             .preferredColorScheme(.dark)
             .previewDisplayName("GameTime - Main View (Session Ongoing)")
+            .tint(.white)
     }
 }
