@@ -68,7 +68,7 @@
 				6F908BD62D070954000745F9 /* CreateTimerView */,
 				6F908BD52D070933000745F9 /* MainView */,
 				6F370DFE290BEBF900A407C0 /* Components */,
-				6F45A4DC2D1599940042D03F /* GameTimeToolbar.swift */,
+				6F6A2E072D172E4400862C6D /* Toolbar */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -102,6 +102,14 @@
 				6F45A4D92D1593E50042D03F /* PhaseChangeHandler.swift */,
 			);
 			path = Handler;
+			sourceTree = "<group>";
+		};
+		6F6A2E072D172E4400862C6D /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				6F45A4DC2D1599940042D03F /* GameTimeToolbar.swift */,
+			);
+			path = Toolbar;
 			sourceTree = "<group>";
 		};
 		6F908BD52D070933000745F9 /* MainView */ = {
