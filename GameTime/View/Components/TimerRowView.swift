@@ -24,39 +24,41 @@ struct TimerRowView: View {
                 .transition(.move(edge: .leading).combined(with: .opacity))
             }
             
-            //MARK: Name and time
-            VStack (alignment: .leading, spacing: 5) {
-                HStack (spacing: 14) {
-                    // Label
-                    Text(timer.name)
-                        .font(.system(size: 18))
-                        .foregroundStyle(timer.color)
-                    
-                    if timerManager.isActive(timer: timer) {
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 12, height: 12)
+            HStack {
+                //MARK: Name and time
+                VStack (alignment: .leading, spacing: 5) {
+                    HStack (spacing: 14) {
+                        // Label
+                        Text(timer.name)
+                            .font(.system(size: 18))
+                            .foregroundStyle(timer.color)
+                        
+                        if timerManager.isActive(timer: timer) {
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 12, height: 12)
+                        }
                     }
+                    // Time
+                    Text(timer.getTimeString())
+                        .font(.system(size: 24))
                 }
-                // Time
-                Text(timer.getTimeString())
-                    .font(.system(size: 24))
+                
+                Spacer()
+                
+                //MARK: Circular progress
+                CircularProgressView(color: timer.color, progress: timer.getProgress(), lineWidth: 10)
+                    .tint(timer.color)
+                    .frame(width: 36, height: 36)
             }
-            
-            Spacer()
-            
-            //MARK: Circular progress
-            CircularProgressView(color: timer.color, progress: timer.getProgress(), lineWidth: 10)
-                .tint(timer.color)
-                .frame(width: 36, height: 36)
+            .contentShape(Rectangle())          // Ensures the whole area is tappable
+            .onTapGesture {
+                timerManager.makeActive(timer)  // This will be triggered when tapping anywhere on the HStack
+            }
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 10)
         .animation(.easeInOut(duration: 0.3), value: editMode?.wrappedValue.isEditing)
-        .contentShape(Rectangle()) // Ensures the whole area is tappable
-        .onTapGesture {
-            timerManager.makeActive(timer) // This will be triggered anywhere on the row
-        }
     }
 }
 
