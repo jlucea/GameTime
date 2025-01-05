@@ -18,12 +18,13 @@ struct MainView: View {
                 if (timerManager.timers.isEmpty) {
                     EmptyView()
                 } else {
-                    // MARK: Active timer and controls
-                    ActiveTimerView(timer: timerManager.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
-                        .padding(.horizontal)
-                    
                     if UIDevice.current.userInterfaceIdiom == .pad {
-                        // MARK: Timer cards
+                        // MARK: iPad View
+                        // Active timer and controls
+                        ActiveTimerView(timer: timerManager.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
+                            .padding(.horizontal)
+                        
+                        // Timer cards
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(timerManager.timers, id: \.id) { timer in
@@ -34,15 +35,39 @@ struct MainView: View {
                         }
                         .padding(.leading)
                     } else {
-                        // MARK: Timer list
-                        List {
-                            ForEach(timerManager.timers, id: \.id) { timer in
-                                TimerRowView(timer: timer)
+                        GeometryReader { geometry in
+                            let isLandscape = geometry.size.width > geometry.size.height
+                            if isLandscape {
+                                HStack {
+                                    ActiveTimerView(timer: timerManager.activeTimer!, size: .medium)
+                                        .padding(.horizontal, 24)
+                                    
+                                    // Timer list
+                                    List {
+                                        ForEach(timerManager.timers, id: \.id) { timer in
+                                            TimerRowView(timer: timer)
+                                        }
+                                    }
+                                    .listStyle(.plain)
+                                }
+                            } else {
+                                VStack {
+                                    ActiveTimerView(timer: timerManager.activeTimer!, size: .medium)
+                                        .padding(.trailing, 8)
+                                    
+                                    // Timer list
+                                    List {
+                                        ForEach(timerManager.timers, id: \.id) { timer in
+                                            TimerRowView(timer: timer)
+                                        }
+                                    }
+                                    .listStyle(.plain)
+                                    .frame(height: 268)
+                                }
                             }
                         }
-                        .listStyle(.plain)
-                        .frame(height: 268)
                     }
+                    
                 }
             }
             .padding(.top, 10)
