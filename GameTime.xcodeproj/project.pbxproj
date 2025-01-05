@@ -23,6 +23,7 @@
 		6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */; };
 		6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */; };
 		6FA853D928FB1F03005E4EC1 /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */; };
+		6FE6CF532D29972E00FB78C5 /* ProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6CF522D29972E00FB78C5 /* ProcessInfo.swift */; };
 		6FF1B0EB2906CA21001B9E38 /* ActiveTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */; };
 		6FF4A36A2CDA300900D7902D /* GTTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF4A3692CDA300900D7902D /* GTTextFieldView.swift */; };
 		6FF4A36C2CDD024D00D7902D /* TimerDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF4A36B2CDD024D00D7902D /* TimerDurationPicker.swift */; };
@@ -46,6 +47,7 @@
 		6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6FA853D828FB1F03005E4EC1 /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
+		6FE6CF522D29972E00FB78C5 /* ProcessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfo.swift; sourceTree = "<group>"; };
 		6FF1B0EA2906CA21001B9E38 /* ActiveTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTimerView.swift; sourceTree = "<group>"; };
 		6FF4A3692CDA300900D7902D /* GTTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTTextFieldView.swift; sourceTree = "<group>"; };
 		6FF4A36B2CDD024D00D7902D /* TimerDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDurationPicker.swift; sourceTree = "<group>"; };
@@ -150,10 +152,10 @@
 		6FA853C928FB1A78005E4EC1 /* GameTime */ = {
 			isa = PBXGroup;
 			children = (
+				6FE6CF512D29971900FB78C5 /* App */,
 				6F45A4D82D1593D40042D03F /* Handler */,
 				6F23470F290290F600A765BE /* Model */,
 				6F23470529028FCA00A765BE /* View */,
-				6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */,
 				6FA853CE28FB1A7A005E4EC1 /* Assets.xcassets */,
 				6FA853D028FB1A7A005E4EC1 /* Preview Content */,
 			);
@@ -166,6 +168,15 @@
 				6FA853D128FB1A7A005E4EC1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6FE6CF512D29971900FB78C5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6FA853CA28FB1A78005E4EC1 /* GameTimeApp.swift */,
+				6FE6CF522D29972E00FB78C5 /* ProcessInfo.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +262,7 @@
 				6F908BD82D0711DE000745F9 /* TimerDuration.swift in Sources */,
 				6FF4A36A2CDA300900D7902D /* GTTextFieldView.swift in Sources */,
 				6F234713290290F700A765BE /* GTTimer.swift in Sources */,
+				6FE6CF532D29972E00FB78C5 /* ProcessInfo.swift in Sources */,
 				6F78F4052CD937D500ECD69D /* ColorPickerView.swift in Sources */,
 				6F81B5D22CA6FE740020BE44 /* EmptyView.swift in Sources */,
 				6FA853CB28FB1A78005E4EC1 /* GameTimeApp.swift in Sources */,

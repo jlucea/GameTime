@@ -7,28 +7,26 @@ struct MainView: View {
     // Instance of the controller class, that will be responsible for managing timers and their states.
     // This object is made available to other views and subviews as an @EnvironmentObject
     //
-    @StateObject var controller = GTTimerManager()
-    
+    @EnvironmentObject var timerManager: GTTimerManager
     @Environment(\.scenePhase) var scenePhase
     
     @State private var showAddNewTimerScreen : Bool = false
-        
     
     var body: some View {
         NavigationView {
             VStack {
-                if (controller.timers.isEmpty) {
+                if (timerManager.timers.isEmpty) {
                     EmptyView()
                 } else {
                     // MARK: Active timer and controls
-                    ActiveTimerView(timer: controller.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
+                    ActiveTimerView(timer: timerManager.activeTimer!, size: UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium)
                         .padding(.horizontal)
                     
                     if UIDevice.current.userInterfaceIdiom == .pad {
                         // MARK: Timer cards
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(controller.timers, id: \.id) { timer in
+                                ForEach(timerManager.timers, id: \.id) { timer in
                                     TimerCardView(timer: timer)
                                         .padding(.trailing, 8)
                                 }
@@ -38,7 +36,7 @@ struct MainView: View {
                     } else {
                         // MARK: Timer list
                         List {
-                            ForEach(controller.timers, id: \.id) { timer in
+                            ForEach(timerManager.timers, id: \.id) { timer in
                                 TimerRowView(timer: timer)
                             }
                         }
@@ -49,13 +47,12 @@ struct MainView: View {
             }
             .padding(.top, 10)
             .toolbar {
-                GameTimeToolbar.content(showAddNewTimerScreen: $showAddNewTimerScreen, controller: controller)
+                GameTimeToolbar.content(showAddNewTimerScreen: $showAddNewTimerScreen, controller: timerManager)
             }
             .navigationBarTitleDisplayMode(.inline)
         }
-        .environmentObject(controller)
         .onChange(of: scenePhase) { newPhase in
-            PhaseChangeHandler.shared.onPhaseChange(newPhase, timerController: controller)
+            PhaseChangeHandler.shared.onPhaseChange(newPhase, timerController: timerManager)
         }
     } // End of Body
     
@@ -74,9 +71,10 @@ struct ContentView_Previews: PreviewProvider {
         let timer5 = GTTimer(name: "Theon", color: .green, maxTime: 3829, remainingTime: 755)
         let array : [GTTimer] = [timer1, timer2, timer3, timer4, timer5]
         
-        let envObject : GTTimerManager = GTTimerManager(timers: array, activeTimerIndex: 0)
-                        
-        return MainView(controller: envObject)
+        let previewManager = GTTimerManager(timers: array, activeTimerIndex: 0)
+                                
+        return MainView()
+            .environmentObject(previewManager)
             .previewInterfaceOrientation(.portrait)
             .preferredColorScheme(.dark)
             .previewDisplayName("GameTime - Main View (Session Ongoing)")

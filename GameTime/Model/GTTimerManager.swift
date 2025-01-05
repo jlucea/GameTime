@@ -11,17 +11,19 @@ final class GTTimerManager : ObservableObject {
     /// An array of all `GTTimers` managed by this instance.
     /// New timers can be added via `addTimer(timer:)`, and existing timers
     /// can be deleted using `deleteTimer(_:)`.
-    @Published private(set) var timers: [GTTimer] = []
+    @Published var timers: [GTTimer] = []
     
     /// The currently active `GTTimer`, representing the selected timer.
     /// The active timer is updated when timers are added, deleted, or switched via methods like `activateNextTimer()` and `makeActive(_:)`.
     @Published private(set) var activeTimer: GTTimer?
-    
+        
     /// The index of the active timer in the `timers` array. Used internally to keep track of which timer is currently selected.
     private var activeTimerIndex: Int = 0
     
     /// Initializes an empty `GTTimerManager` with no timers.
-    init() {}
+    init() {
+        
+    }
     
     /// Initializes a `GTTimerManager` with an array of timers and sets an initial active timer.
     ///
@@ -125,4 +127,19 @@ final class GTTimerManager : ObservableObject {
         return timer.id == activeTimer?.id
     }
     
+}
+
+extension GTTimerManager {
+    
+    static func mocked() -> GTTimerManager {
+        let timers = [
+            GTTimer(name: "Tyrion", color: .purple, maxTime: 3044, remainingTime: 2101),
+            GTTimer(name: "Daenerys", color: .red, maxTime: 6375, remainingTime: 3024),
+            GTTimer(name: "Cersei", color: .white, maxTime: 7971, remainingTime: 5505),
+            GTTimer(name: "Viserys", color: .yellow, maxTime: 3829, remainingTime: 999),
+            GTTimer(name: "Theon", color: .teal, maxTime: 3829, remainingTime: 755)
+        ]
+        return GTTimerManager(timers: timers, activeTimerIndex: 2)
+    }
+        
 }
