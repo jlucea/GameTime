@@ -78,17 +78,17 @@ public class GTTimer: ObservableObject {
     convenience init(name: String, color: Color, maxTime: Int, remainingTime: Int) {
         self.init(name: name, color: color, maxTime: maxTime)
         self.isPaused = true
-        self.timeRemaining = totalDuration
         self.timeRemaining = remainingTime
         initTimer()
     }
     
-    // Create a persistent timer
+    /// Creates a persistent timer
     private func initTimer() {
+        // This ensures that only one Timer is ever active for a GTTimer instance.
+        timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.tick()
         }
-        
         // Ensure it runs in `.common` mode to keep it active during UI interactions
         RunLoop.current.add(timer!, forMode: .common)
     }
