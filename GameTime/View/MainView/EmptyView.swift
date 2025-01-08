@@ -9,20 +9,17 @@ import SwiftUI
 
 struct EmptyView: View {
     
-    private let titleText = "Welcome to GameTime"
-    private let subtitleText = "Setup a timer to begin"
-    
     var body: some View {
         VStack {
             Spacer()
             
             Image(systemName: "clock")
             
-            Text(titleText)
+            Text(String(localized: "welcome_message"))
                 .font(.system(size: 28))
                 .padding()
             
-            Text(subtitleText)
+            Text(String(localized: "initial_instructions"))
                 .font(.subheadline)
                 .padding()
             

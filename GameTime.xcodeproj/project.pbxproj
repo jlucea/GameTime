@@ -14,6 +14,7 @@
 		6F357A762D08B5620024F0F1 /* TimerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F357A752D08B5620024F0F1 /* TimerRowView.swift */; };
 		6F45A4DA2D1593E50042D03F /* PhaseChangeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F45A4D92D1593E50042D03F /* PhaseChangeHandler.swift */; };
 		6F45A4DD2D1599940042D03F /* GameTimeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F45A4DC2D1599940042D03F /* GameTimeToolbar.swift */; };
+		6F46D5122D2DB7A900963A18 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6F46D5112D2DB7A900963A18 /* Localizable.xcstrings */; };
 		6F78F4052CD937D500ECD69D /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78F4042CD937D500ECD69D /* ColorPickerView.swift */; };
 		6F81B5D22CA6FE740020BE44 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F81B5D12CA6FE740020BE44 /* EmptyView.swift */; };
 		6F908BD32D0708C1000745F9 /* CreateTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F908BD22D0708BB000745F9 /* CreateTimerViewModel.swift */; };
@@ -37,6 +38,7 @@
 		6F357A752D08B5620024F0F1 /* TimerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowView.swift; sourceTree = "<group>"; };
 		6F45A4D92D1593E50042D03F /* PhaseChangeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseChangeHandler.swift; sourceTree = "<group>"; };
 		6F45A4DC2D1599940042D03F /* GameTimeToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeToolbar.swift; sourceTree = "<group>"; };
+		6F46D5112D2DB7A900963A18 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = GameTime/Localizable.xcstrings; sourceTree = "<group>"; };
 		6F78F4042CD937D500ECD69D /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		6F81B5D12CA6FE740020BE44 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		6F908BD22D0708BB000745F9 /* CreateTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimerViewModel.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		6FA853BE28FB1A78005E4EC1 = {
 			isa = PBXGroup;
 			children = (
+				6F46D5112D2DB7A900963A18 /* Localizable.xcstrings */,
 				6FA853C928FB1A78005E4EC1 /* GameTime */,
 				6FA853C828FB1A78005E4EC1 /* Products */,
 			);
@@ -221,6 +224,8 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				"es-419",
 			);
 			mainGroup = 6FA853BE28FB1A78005E4EC1;
 			productRefGroup = 6FA853C828FB1A78005E4EC1 /* Products */;
@@ -239,6 +244,7 @@
 			files = (
 				6FA853D228FB1A7A005E4EC1 /* Preview Assets.xcassets in Resources */,
 				6FA853CF28FB1A7A005E4EC1 /* Assets.xcassets in Resources */,
+				6F46D5122D2DB7A900963A18 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +337,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -386,6 +393,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
