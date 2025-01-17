@@ -27,11 +27,15 @@ struct TimerRowView: View {
             HStack {
                 //MARK: Name and time
                 VStack (alignment: .leading, spacing: 5) {
+                    // Label
+                    Text(timer.name)
+                        .font(.system(size: 18))
+                        .foregroundStyle(timer.color)
+                        
                     HStack (spacing: 14) {
-                        // Label
-                        Text(timer.name)
-                            .font(.system(size: 18))
-                            .foregroundStyle(timer.color)
+                        // Time
+                        Text(timer.getTimeString())
+                            .font(.system(size: 24))
                         
                         if timerManager.isActive(timer: timer) {
                             Image(systemName: "circle.fill")
@@ -39,9 +43,6 @@ struct TimerRowView: View {
                                 .frame(width: 12, height: 12)
                         }
                     }
-                    // Time
-                    Text(timer.getTimeString())
-                        .font(.system(size: 24))
                 }
                 
                 Spacer()
