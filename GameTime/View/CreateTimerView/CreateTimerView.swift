@@ -9,6 +9,8 @@ struct CreateTimerView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    private let maxNameLenght: Int = 24
+    
     init(isPresented: Binding<Bool>, _ manager: GTTimerManager? = nil) {
         self._viewModel = StateObject(wrappedValue: ViewModel(isPresented: isPresented, manager))
     }
@@ -25,6 +27,11 @@ struct CreateTimerView: View {
                         Text("Name")
                             .frame(minWidth: 0, idealWidth: .infinity, alignment: .leading)
                         TextField("Name", text: $viewModel.name)
+                            .onChange(of: viewModel.name) { newValue in
+                                if newValue.count > maxNameLenght {
+                                    viewModel.name = String(newValue.prefix(maxNameLenght))
+                                }
+                            }
                             .multilineTextAlignment(.trailing)
                             .autocorrectionDisabled()
                             .submitLabel(.done)
